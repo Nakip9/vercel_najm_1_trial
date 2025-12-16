@@ -15,7 +15,7 @@ const AddEntryForm = ({ onSuccess }) => {
     setError(null);
 
     if (!formData.passport_number.trim()) {
-      setError('Passport number is required');
+      setError('رقم الجواز مطلوب');
       return;
     }
 
@@ -37,7 +37,7 @@ const AddEntryForm = ({ onSuccess }) => {
       const data = await response.json();
 
       if (!response.ok) {
-        setError(data.error || 'Failed to create entry');
+        setError(data.error || 'فشل في إضافة المدخل');
         return;
       }
 
@@ -48,11 +48,11 @@ const AddEntryForm = ({ onSuccess }) => {
         admin_notes: '',
       });
 
-      alert('Entry created successfully!');
+      alert('تم إضافة المدخل بنجاح!');
       onSuccess();
     } catch (err) {
-      console.error('Error creating entry:', err);
-      setError('An error occurred. Please try again.');
+      console.error('خطأ في إضافة المدخل:', err);
+      setError('حدث خطأ. يرجى المحاولة مرة أخرى.');
     } finally {
       setLoading(false);
     }
@@ -60,11 +60,11 @@ const AddEntryForm = ({ onSuccess }) => {
 
   return (
     <div className="add-entry-form">
-      <h3>Add New Passport Entry</h3>
+      <h3>إضافة مدخل جديد لجواز السفر</h3>
       <form onSubmit={handleSubmit}>
         <div className="form-row">
           <div className="form-group">
-            <label htmlFor="passport-number">Passport Number *</label>
+            <label htmlFor="passport-number">رقم الجواز *</label>
             <input
               type="text"
               id="passport-number"
@@ -72,14 +72,14 @@ const AddEntryForm = ({ onSuccess }) => {
               onChange={(e) =>
                 setFormData({ ...formData, passport_number: e.target.value })
               }
-              placeholder="Enter passport number"
+              placeholder="أدخل رقم الجواز"
               required
               disabled={loading}
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="status">Status *</label>
+            <label htmlFor="status">الحالة *</label>
             <select
               id="status"
               value={formData.status}
@@ -87,21 +87,21 @@ const AddEntryForm = ({ onSuccess }) => {
               required
               disabled={loading}
             >
-              <option value="pending">Pending</option>
-              <option value="processing">Processing</option>
-              <option value="ready">Ready</option>
-              <option value="rejected">Rejected</option>
+              <option value="pending">قيد الانتظار</option>
+              <option value="processing">قيد المعالجة</option>
+              <option value="ready">جاهز</option>
+              <option value="rejected">مرفوض</option>
             </select>
           </div>
         </div>
 
         <div className="form-group">
-          <label htmlFor="admin-notes">Admin Notes (Optional)</label>
+          <label htmlFor="admin-notes">ملاحظات المدير (اختياري)</label>
           <textarea
             id="admin-notes"
             value={formData.admin_notes}
             onChange={(e) => setFormData({ ...formData, admin_notes: e.target.value })}
-            placeholder="Add any notes about this entry..."
+            placeholder="أضف أي ملاحظات حول هذا المدخل..."
             rows="3"
             disabled={loading}
           />
@@ -110,7 +110,7 @@ const AddEntryForm = ({ onSuccess }) => {
         {error && <div className="error-message">{error}</div>}
 
         <button type="submit" className="btn-primary" disabled={loading}>
-          {loading ? 'Adding...' : 'Add Entry'}
+          {loading ? 'جارٍ الإضافة...' : 'إضافة المدخل'}
         </button>
       </form>
     </div>
@@ -118,4 +118,4 @@ const AddEntryForm = ({ onSuccess }) => {
 };
 
 export default AddEntryForm;
-
+  

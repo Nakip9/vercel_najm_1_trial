@@ -43,7 +43,7 @@ const Admin = () => {
       setPagination(data.pagination);
     } catch (err) {
       console.error('Error fetching entries:', err);
-      setError('An error occurred while fetching entries');
+      setError('حدث خطأ أثناء جلب البيانات');
     } finally {
       setLoading(false);
     }
@@ -76,8 +76,8 @@ const Admin = () => {
     <div className="admin-page">
       <div className="container">
         <div className="admin-header">
-          <h1>Admin Panel - Visa Status Management</h1>
-          <p>Manage passport entries and visa statuses</p>
+          <h1>لوحة الإدارة - إدارة حالة الفيزا</h1>
+          <p>إدارة مدخلات جوازات السفر وحالات الفيزا</p>
         </div>
 
         <div className="admin-content">
@@ -85,7 +85,7 @@ const Admin = () => {
 
           <div className="admin-filters">
             <div className="filter-group">
-              <label htmlFor="search">Search Passport Number</label>
+              <label htmlFor="search">ابحث عن الجواز</label>
               <input
                 type="text"
                 id="search"
@@ -96,13 +96,13 @@ const Admin = () => {
             </div>
 
             <div className="filter-group">
-              <label htmlFor="status-filter">Filter by Status</label>
+              <label htmlFor="status-filter">فرز حسب الحاله</label>
               <select id="status-filter" value={statusFilter} onChange={handleStatusFilter}>
-                <option value="all">All Statuses</option>
-                <option value="pending">Pending</option>
-                <option value="processing">Processing</option>
-                <option value="ready">Ready</option>
-                <option value="rejected">Rejected</option>
+                <option value="all">جميع الحالات</option>
+                <option value="pending">قيد الانتظار</option>
+                <option value="processing">قيد المعالجة</option>
+                <option value="ready">جاهز</option>
+                <option value="rejected">مرفوض</option>
               </select>
             </div>
           </div>
@@ -110,7 +110,7 @@ const Admin = () => {
           {error && (
             <div className="error-banner">
               {error}
-              <button onClick={handleRefresh}>Retry</button>
+              <button onClick={handleRefresh}>خطاء</button>
             </div>
           )}
 

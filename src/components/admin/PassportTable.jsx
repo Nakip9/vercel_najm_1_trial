@@ -54,7 +54,7 @@ const PassportTable = ({ entries, onRefresh, onDelete }) => {
   if (entries.length === 0) {
     return (
       <div className="empty-state">
-        <p>No passport entries found. Add your first entry using the form above.</p>
+        <p>لم يتم العثور على إدخالات جواز السفر. أضف أول إدخال لك باستخدام النموذج أعلاه</p>
       </div>
     );
   }
