@@ -83,14 +83,14 @@ const StatusResult = ({ result, onReset }) => {
             {statusConfig.icon}
           </div>
           <div className="status-info">
-            <h3 className="status-title" style={{ color: statusConfig.color }}>
-              {statusConfig.label}
-            </h3>
             {fullName && (
               <p className="status-name">
                 مرحباً، <strong>{fullName}</strong>
               </p>
             )}
+            <h3 className="status-title" style={{ color: statusConfig.color }}>
+              {statusConfig.label}
+            </h3>
             <p className="status-passport">
               رقم الجواز: <strong>{result.passport_number}</strong>
             </p>

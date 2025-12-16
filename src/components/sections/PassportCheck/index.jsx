@@ -11,33 +11,33 @@ const PassportCheck = () => {
   // Input validation function
   const validatePassportNumber = (number) => {
     const trimmed = number.trim().toUpperCase();
-    
+
     // Check if empty
     if (!trimmed) {
       return { valid: false, error: 'الرجاء إدخال رقم الجواز' };
     }
-    
+
     // Check length (typical passport numbers are 6-12 characters)
     if (trimmed.length < 3 || trimmed.length > 20) {
       return { valid: false, error: 'يجب أن يكون رقم الجواز بين 3 و 20 حرفاً' };
     }
-    
+
     // Allow alphanumeric characters, hyphens, and spaces
     const validPattern = /^[A-Z0-9\s\-]+$/;
     if (!validPattern.test(trimmed)) {
       return { valid: false, error: 'رقم الجواز يحتوي على أحرف غير صالحة' };
     }
-    
+
     return { valid: true, sanitized: trimmed };
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     // Reset states
     setError(null);
     setResult(null);
-    
+
     // Validate input
     const validation = validatePassportNumber(passportNumber);
     if (!validation.valid) {
@@ -71,6 +71,8 @@ const PassportCheck = () => {
           status: data.status,
           updated_at: data.updated_at,
           admin_notes: data.admin_notes,
+          first_name: data.first_name,
+          last_name: data.last_name,
         });
       }
     } catch (err) {
