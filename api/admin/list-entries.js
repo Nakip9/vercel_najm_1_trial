@@ -47,7 +47,7 @@ export default async function handler(req, res) {
     // Build query
     let query = supabase
       .from('visa_status')
-      .select('id, passport_number, status, created_at, updated_at, admin_notes', {
+      .select('id, passport_number, status, created_at, updated_at, admin_notes, first_name, last_name', {
         count: 'exact',
       })
       .order('updated_at', { ascending: false });

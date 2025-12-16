@@ -57,12 +57,13 @@ const StatusResult = ({ result, onReset }) => {
   }
 
   const statusConfig = getStatusConfig(result.status);
+  const fullName = [result.first_name, result.last_name].filter(Boolean).join(' ');
   const updatedDate = result.updated_at
     ? new Date(result.updated_at).toLocaleDateString('ar-SA', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-      })
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
     : null;
 
   return (
@@ -85,6 +86,11 @@ const StatusResult = ({ result, onReset }) => {
             <h3 className="status-title" style={{ color: statusConfig.color }}>
               {statusConfig.label}
             </h3>
+            {fullName && (
+              <p className="status-name">
+                مرحباً، <strong>{fullName}</strong>
+              </p>
+            )}
             <p className="status-passport">
               رقم الجواز: <strong>{result.passport_number}</strong>
             </p>

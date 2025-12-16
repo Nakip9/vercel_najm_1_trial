@@ -34,7 +34,7 @@ export default async function handler(req, res) {
 
   try {
     // Parse request body
-    const { passport_number, status, admin_notes } = req.body;
+    const { passport_number, status, admin_notes, first_name, last_name } = req.body;
 
     // Validation
     if (!passport_number || passport_number.trim() === '') {
@@ -53,6 +53,8 @@ export default async function handler(req, res) {
     // Sanitize input
     const sanitizedPassport = passport_number.trim().toUpperCase();
     const sanitizedNotes = admin_notes ? admin_notes.trim() : null;
+    const sanitizedFirstName = first_name ? first_name.trim() : null;
+    const sanitizedLastName = last_name ? last_name.trim() : null;
 
     // Insert into database
     const { data, error } = await supabase
@@ -60,7 +62,10 @@ export default async function handler(req, res) {
       .insert({
         passport_number: sanitizedPassport,
         status: entryStatus,
+        status: entryStatus,
         admin_notes: sanitizedNotes,
+        first_name: sanitizedFirstName,
+        last_name: sanitizedLastName,
       })
       .select()
       .single();
@@ -84,7 +89,10 @@ export default async function handler(req, res) {
         id: data.id,
         passport_number: data.passport_number,
         status: data.status,
+        status: data.status,
         admin_notes: data.admin_notes,
+        first_name: data.first_name,
+        last_name: data.last_name,
         created_at: data.created_at,
       },
     });

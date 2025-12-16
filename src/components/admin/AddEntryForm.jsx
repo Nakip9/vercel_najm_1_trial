@@ -4,6 +4,8 @@ import './Admin.css';
 const AddEntryForm = ({ onSuccess }) => {
   const [formData, setFormData] = useState({
     passport_number: '',
+    first_name: '',
+    last_name: '',
     status: 'pending',
     admin_notes: '',
   });
@@ -29,6 +31,8 @@ const AddEntryForm = ({ onSuccess }) => {
         },
         body: JSON.stringify({
           passport_number: formData.passport_number.trim().toUpperCase(),
+          first_name: formData.first_name.trim(),
+          last_name: formData.last_name.trim(),
           status: formData.status,
           admin_notes: formData.admin_notes.trim() || null,
         }),
@@ -44,6 +48,8 @@ const AddEntryForm = ({ onSuccess }) => {
       // Reset form
       setFormData({
         passport_number: '',
+        first_name: '',
+        last_name: '',
         status: 'pending',
         admin_notes: '',
       });
@@ -74,6 +80,34 @@ const AddEntryForm = ({ onSuccess }) => {
               }
               placeholder="أدخل رقم الجواز"
               required
+              disabled={loading}
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="first-name">الاسم الأول</label>
+            <input
+              type="text"
+              id="first-name"
+              value={formData.first_name}
+              onChange={(e) =>
+                setFormData({ ...formData, first_name: e.target.value })
+              }
+              placeholder="الاسم الأول"
+              disabled={loading}
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="last-name">اسم العائلة</label>
+            <input
+              type="text"
+              id="last-name"
+              value={formData.last_name}
+              onChange={(e) =>
+                setFormData({ ...formData, last_name: e.target.value })
+              }
+              placeholder="اسم العائلة"
               disabled={loading}
             />
           </div>
@@ -118,4 +152,3 @@ const AddEntryForm = ({ onSuccess }) => {
 };
 
 export default AddEntryForm;
-  

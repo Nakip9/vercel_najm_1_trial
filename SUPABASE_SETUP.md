@@ -42,6 +42,8 @@ Complete step-by-step guide to set up your Supabase database for the passport st
    | created_at | timestamp | `now()` | No | No |
    | updated_at | timestamp | `now()` | No | No |
    | admin_notes | text | - | Yes | No |
+   | first_name | text | - | Yes | No |
+   | last_name | text | - | Yes | No |
 
 5. Click **"Save"** to create the table
 
@@ -143,6 +145,12 @@ After completing this setup:
 2. Test the passport check functionality
 3. Access the admin panel at `/admin` to manage entries
 4. Add your first passport entries through the admin panel
+5. If upgrading, run this SQL:
+   ```sql
+   ALTER TABLE visa_status 
+   ADD COLUMN first_name text,
+   ADD COLUMN last_name text;
+   ```
 
 ## Security Notes
 

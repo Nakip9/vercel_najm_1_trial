@@ -46,7 +46,7 @@ export default async function handler(req, res) {
     // Query database
     const { data, error } = await supabase
       .from('visa_status')
-      .select('id, passport_number, status, created_at, updated_at, admin_notes')
+      .select('id, passport_number, status, created_at, updated_at, admin_notes, first_name, last_name')
       .eq('passport_number', sanitizedPassport)
       .single();
 
@@ -70,7 +70,10 @@ export default async function handler(req, res) {
       passport_number: data.passport_number,
       status: data.status,
       updated_at: data.updated_at,
+      updated_at: data.updated_at,
       admin_notes: data.admin_notes || null,
+      first_name: data.first_name || null,
+      last_name: data.last_name || null,
     });
   } catch (error) {
     console.error('Unexpected error:', error);

@@ -3,6 +3,8 @@ import './Admin.css';
 
 const EditEntryModal = ({ entry, onClose, onSuccess }) => {
   const [formData, setFormData] = useState({
+    first_name: entry.first_name || '',
+    last_name: entry.last_name || '',
     status: entry.status,
     admin_notes: entry.admin_notes || '',
   });
@@ -31,6 +33,8 @@ const EditEntryModal = ({ entry, onClose, onSuccess }) => {
         },
         body: JSON.stringify({
           id: entry.id,
+          first_name: formData.first_name.trim(),
+          last_name: formData.last_name.trim(),
           status: formData.status,
           admin_notes: formData.admin_notes.trim() || null,
         }),
@@ -80,6 +84,31 @@ const EditEntryModal = ({ entry, onClose, onSuccess }) => {
           </div>
 
           <form onSubmit={handleSubmit}>
+            <div className="form-group-row">
+              <div className="form-group">
+                <label htmlFor="edit-first-name">First Name</label>
+                <input
+                  type="text"
+                  id="edit-first-name"
+                  value={formData.first_name}
+                  onChange={(e) => setFormData({ ...formData, first_name: e.target.value })}
+                  placeholder="First name"
+                  disabled={loading}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="edit-last-name">Last Name</label>
+                <input
+                  type="text"
+                  id="edit-last-name"
+                  value={formData.last_name}
+                  onChange={(e) => setFormData({ ...formData, last_name: e.target.value })}
+                  placeholder="Last name"
+                  disabled={loading}
+                />
+              </div>
+            </div>
+
             <div className="form-group">
               <label htmlFor="edit-status">Status *</label>
               <select

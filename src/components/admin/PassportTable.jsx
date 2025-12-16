@@ -66,6 +66,7 @@ const PassportTable = ({ entries, onRefresh, onDelete }) => {
           <thead>
             <tr>
               <th>Passport Number</th>
+              <th>Full Name</th>
               <th>Status</th>
               <th>Created</th>
               <th>Updated</th>
@@ -78,6 +79,9 @@ const PassportTable = ({ entries, onRefresh, onDelete }) => {
               <tr key={entry.id}>
                 <td>
                   <strong>{entry.passport_number}</strong>
+                </td>
+                <td>
+                  {[entry.first_name, entry.last_name].filter(Boolean).join(' ') || '—'}
                 </td>
                 <td>{getStatusBadge(entry.status)}</td>
                 <td>{new Date(entry.created_at).toLocaleDateString()}</td>

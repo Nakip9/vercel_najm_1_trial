@@ -34,7 +34,7 @@ export default async function handler(req, res) {
 
   try {
     // Parse request body
-    const { id, status, admin_notes } = req.body;
+    const { id, status, admin_notes, first_name, last_name } = req.body;
 
     // Validation
     if (!id) {
@@ -61,6 +61,14 @@ export default async function handler(req, res) {
       updateData.admin_notes = admin_notes ? admin_notes.trim() : null;
     }
 
+    if (first_name !== undefined) {
+      updateData.first_name = first_name ? first_name.trim() : null;
+    }
+
+    if (last_name !== undefined) {
+      updateData.last_name = last_name ? last_name.trim() : null;
+    }
+
     // Update database
     const { data, error } = await supabase
       .from('visa_status')
@@ -85,7 +93,10 @@ export default async function handler(req, res) {
         id: data.id,
         passport_number: data.passport_number,
         status: data.status,
+        status: data.status,
         admin_notes: data.admin_notes,
+        first_name: data.first_name,
+        last_name: data.last_name,
         updated_at: data.updated_at,
       },
     });
