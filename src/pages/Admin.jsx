@@ -35,7 +35,7 @@ const Admin = () => {
       const data = await response.json();
 
       if (!response.ok) {
-        setError(data.error || 'Failed to fetch entries');
+        setError(data.error || 'فشل في جلب البيانات');
         return;
       }
 
@@ -89,7 +89,7 @@ const Admin = () => {
               <input
                 type="text"
                 id="search"
-                placeholder="Enter passport number..."
+                placeholder="أدخل رقم الجواز..."
                 value={searchTerm}
                 onChange={handleSearch}
               />
@@ -117,7 +117,7 @@ const Admin = () => {
           {loading ? (
             <div className="loading-state">
               <div className="spinner-large"></div>
-              <p>Loading entries...</p>
+              <p>جاري تحميل البيانات...</p>
             </div>
           ) : (
             <>
@@ -134,17 +134,17 @@ const Admin = () => {
                     onClick={() => handlePageChange(currentPage - 1)}
                     disabled={currentPage === 1}
                   >
-                    Previous
+                    السابق
                   </button>
                   <span className="pagination-info">
-                    Page {pagination.page} of {pagination.totalPages} ({pagination.total} total)
+                    صفحة {pagination.page} من {pagination.totalPages} (الكل {pagination.total})
                   </span>
                   <button
                     className="btn-pagination"
                     onClick={() => handlePageChange(currentPage + 1)}
                     disabled={currentPage === pagination.totalPages}
                   >
-                    Next
+                    التالي
                   </button>
                 </div>
               )}

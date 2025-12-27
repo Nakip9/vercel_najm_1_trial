@@ -70,7 +70,6 @@ export default async function handler(req, res) {
       passport_number: data.passport_number,
       status: data.status,
       updated_at: data.updated_at,
-      updated_at: data.updated_at,
       admin_notes: data.admin_notes || null,
       first_name: data.first_name || null,
       last_name: data.last_name || null,

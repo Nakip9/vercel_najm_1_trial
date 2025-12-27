@@ -11,7 +11,7 @@ const PassportTable = ({ entries, onRefresh, onDelete }) => {
   };
 
   const handleDelete = async (id, passportNumber) => {
-    if (!window.confirm(`Are you sure you want to delete passport number ${passportNumber}?`)) {
+    if (!window.confirm(`هل أنت متأكد من حذف رقم الجواز ${passportNumber}؟`)) {
       return;
     }
 
@@ -25,15 +25,15 @@ const PassportTable = ({ entries, onRefresh, onDelete }) => {
       const data = await response.json();
 
       if (!response.ok) {
-        alert(data.error || 'Failed to delete entry');
+        alert(data.error || 'فشل في حذف المدخل');
         return;
       }
 
-      alert('Entry deleted successfully');
+      alert('تم حذف المدخل بنجاح');
       onRefresh();
     } catch (error) {
       console.error('Error deleting entry:', error);
-      alert('An error occurred while deleting the entry');
+      alert('حدث خطأ أثناء حذف المدخل');
     } finally {
       setDeletingId(null);
     }
@@ -41,10 +41,10 @@ const PassportTable = ({ entries, onRefresh, onDelete }) => {
 
   const getStatusBadge = (status) => {
     const badges = {
-      ready: { label: 'Ready', className: 'badge-success' },
-      in_embassy: { label: 'In Embassy', className: 'badge-warning' },
-      pending: { label: 'Pending', className: 'badge-info' },
-      rejected: { label: 'Rejected', className: 'badge-error' },
+      ready: { label: 'جاهز', className: 'badge-success' },
+      in_embassy: { label: 'في السفارة', className: 'badge-warning' },
+      pending: { label: 'قيد الانتظار', className: 'badge-info' },
+      rejected: { label: 'مرفوض', className: 'badge-error' },
     };
 
     const badge = badges[status] || badges.pending;
@@ -65,13 +65,13 @@ const PassportTable = ({ entries, onRefresh, onDelete }) => {
         <table className="passport-table">
           <thead>
             <tr>
-              <th>Passport Number</th>
-              <th>Full Name</th>
-              <th>Status</th>
-              <th>Created</th>
-              <th>Updated</th>
-              <th>Notes</th>
-              <th>Actions</th>
+              <th>رقم الجواز</th>
+              <th>الاسم الكامل</th>
+              <th>الحالة</th>
+              <th>تاريخ الإنشاء</th>
+              <th>آخر تحديث</th>
+              <th>ملاحظات</th>
+              <th>الإجراءات</th>
             </tr>
           </thead>
           <tbody>
@@ -102,17 +102,17 @@ const PassportTable = ({ entries, onRefresh, onDelete }) => {
                     <button
                       className="btn-edit"
                       onClick={() => handleEdit(entry)}
-                      title="Edit entry"
+                      title="تعديل"
                     >
-                      ✏️ Edit
+                      ✏️ تعديل
                     </button>
                     <button
                       className="btn-delete"
                       onClick={() => handleDelete(entry.id, entry.passport_number)}
                       disabled={deletingId === entry.id}
-                      title="Delete entry"
+                      title="حذف"
                     >
-                      {deletingId === entry.id ? '⏳' : '🗑️ Delete'}
+                      {deletingId === entry.id ? '⏳' : '🗑️ حذف'}
                     </button>
                   </div>
                 </td>

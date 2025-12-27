@@ -47,11 +47,11 @@ const EditEntryModal = ({ entry, onClose, onSuccess }) => {
         return;
       }
 
-      alert('Entry updated successfully!');
+      alert('تم تحديث البيانات بنجاح!');
       onSuccess();
     } catch (err) {
       console.error('Error updating entry:', err);
-      setError('An error occurred. Please try again.');
+      setError('حدث خطأ. يرجى المحاولة مرة أخرى.');
     } finally {
       setLoading(false);
     }
@@ -67,7 +67,7 @@ const EditEntryModal = ({ entry, onClose, onSuccess }) => {
     <div className="modal-backdrop" onClick={handleBackdropClick}>
       <div className="modal-content">
         <div className="modal-header">
-          <h3>Edit Entry</h3>
+          <h3>تعديل البيانات</h3>
           <button className="modal-close" onClick={onClose}>
             ×
           </button>
@@ -76,41 +76,41 @@ const EditEntryModal = ({ entry, onClose, onSuccess }) => {
         <div className="modal-body">
           <div className="entry-info">
             <p>
-              <strong>Passport Number:</strong> {entry.passport_number}
+              <strong>رقم الجواز:</strong> {entry.passport_number}
             </p>
             <p>
-              <strong>Created:</strong> {new Date(entry.created_at).toLocaleString()}
+              <strong>تاريخ الإنشاء:</strong> {new Date(entry.created_at).toLocaleString('ar-SA')}
             </p>
           </div>
 
           <form onSubmit={handleSubmit}>
             <div className="form-group-row">
               <div className="form-group">
-                <label htmlFor="edit-first-name">First Name</label>
+                <label htmlFor="edit-first-name">الاسم الأول</label>
                 <input
                   type="text"
                   id="edit-first-name"
                   value={formData.first_name}
                   onChange={(e) => setFormData({ ...formData, first_name: e.target.value })}
-                  placeholder="First name"
+                  placeholder="الاسم الأول"
                   disabled={loading}
                 />
               </div>
               <div className="form-group">
-                <label htmlFor="edit-last-name">Last Name</label>
+                <label htmlFor="edit-last-name">اسم العائلة</label>
                 <input
                   type="text"
                   id="edit-last-name"
                   value={formData.last_name}
                   onChange={(e) => setFormData({ ...formData, last_name: e.target.value })}
-                  placeholder="Last name"
+                  placeholder="اسم العائلة"
                   disabled={loading}
                 />
               </div>
             </div>
 
             <div className="form-group">
-              <label htmlFor="edit-status">Status *</label>
+              <label htmlFor="edit-status">الحالة *</label>
               <select
                 id="edit-status"
                 value={formData.status}
@@ -118,20 +118,20 @@ const EditEntryModal = ({ entry, onClose, onSuccess }) => {
                 required
                 disabled={loading}
               >
-                <option value="pending">Pending</option>
-                <option value="in_embassy">In Embassy</option>
-                <option value="ready">Ready</option>
-                <option value="rejected">Rejected</option>
+                <option value="pending">قيد الانتظار</option>
+                <option value="in_embassy">في السفارة</option>
+                <option value="ready">جاهز</option>
+                <option value="rejected">مرفوض</option>
               </select>
             </div>
 
             <div className="form-group">
-              <label htmlFor="edit-notes">Admin Notes (Optional)</label>
+              <label htmlFor="edit-notes">ملاحظات المدير (اختياري)</label>
               <textarea
                 id="edit-notes"
                 value={formData.admin_notes}
                 onChange={(e) => setFormData({ ...formData, admin_notes: e.target.value })}
-                placeholder="Add any notes about this entry..."
+                placeholder="أضف أي ملاحظات حول هذا المدخل..."
                 rows="4"
                 disabled={loading}
               />
@@ -141,10 +141,10 @@ const EditEntryModal = ({ entry, onClose, onSuccess }) => {
 
             <div className="modal-actions">
               <button type="button" className="btn-secondary" onClick={onClose} disabled={loading}>
-                Cancel
+                إلغاء
               </button>
               <button type="submit" className="btn-primary" disabled={loading}>
-                {loading ? 'Updating...' : 'Update Entry'}
+                {loading ? 'جاري التحديث...' : 'تحديث البيانات'}
               </button>
             </div>
           </form>

@@ -41,10 +41,10 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Entry ID is required' });
     }
 
-    const validStatuses = ['pending', 'processing', 'ready', 'rejected'];
+    const validStatuses = ['pending', 'in_embassy', 'ready', 'rejected'];
     if (status && !validStatuses.includes(status)) {
       return res.status(400).json({
-        error: 'Invalid status. Must be: pending, processing, ready, or rejected',
+        error: 'Invalid status. Must be: pending, in_embassy, ready, or rejected',
       });
     }
 
@@ -92,7 +92,6 @@ export default async function handler(req, res) {
       data: {
         id: data.id,
         passport_number: data.passport_number,
-        status: data.status,
         status: data.status,
         admin_notes: data.admin_notes,
         first_name: data.first_name,

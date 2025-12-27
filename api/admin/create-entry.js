@@ -41,12 +41,12 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Passport number is required' });
     }
 
-    const validStatuses = ['pending', 'processing', 'ready', 'rejected'];
+    const validStatuses = ['pending', 'in_embassy', 'ready', 'rejected'];
     const entryStatus = status || 'pending';
 
     if (!validStatuses.includes(entryStatus)) {
       return res.status(400).json({
-        error: 'Invalid status. Must be: pending, processing, ready, or rejected',
+        error: 'Invalid status. Must be: pending, in_embassy, ready, or rejected',
       });
     }
 
@@ -61,7 +61,6 @@ export default async function handler(req, res) {
       .from('visa_status')
       .insert({
         passport_number: sanitizedPassport,
-        status: entryStatus,
         status: entryStatus,
         admin_notes: sanitizedNotes,
         first_name: sanitizedFirstName,
@@ -88,7 +87,6 @@ export default async function handler(req, res) {
       data: {
         id: data.id,
         passport_number: data.passport_number,
-        status: data.status,
         status: data.status,
         admin_notes: data.admin_notes,
         first_name: data.first_name,
