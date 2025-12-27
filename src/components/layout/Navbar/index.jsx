@@ -39,8 +39,8 @@ const Navbar = () => {
             src="/logo_svg.svg"
             alt="النجم الأزرق للسياحة والسفر"
             className="logo-img"
-            width="320"
-            height="90"
+            width="480"
+            height="140"
             loading="eager"
             fetchPriority="high"
           />

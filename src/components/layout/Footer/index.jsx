@@ -18,37 +18,36 @@ const Footer = () => {
                 <div className="footer-grid">
                     {/* Company Info */}
                     <div className="footer-col footer-col-main">
-    <Link to="/" className="footer-logo" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} aria-label="الرجوع إلى الصفحة الرئيسية">
-        <img 
-            src="/logo_svg.svg" 
-            alt="النجم الأزرق للسياحة والسفر" 
-            className="footer-logo-img"
-            width="380"
-            height="140"
-            loading="eager"
-        />
-        {/* Remove the following line to hide the text */}
-        {/* <span className="footer-logo-text">{COMPANY_INFO.name}</span> */}
-    </Link>
-    <p className="footer-desc">
-        شريكك الموثوق في عالم السفر والسياحة. نقدم لك تجارب سفر استثنائية وخدمات راقية تليق بك.
-    </p>
-    <div className="social-links" role="list" aria-label="روابط التواصل الاجتماعي">
-        {socialMedia.map((social, index) => (
-            <a
-                key={index}
-                href={social.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`social-link ${social.className || ''}`}
-                aria-label={social.label}
-                style={{ '--social-color': social.color }}
-            >
-                {social.icon}
-            </a>
-        ))}
-    </div>
-</div>
+                        <Link to="/" className="footer-logo" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} aria-label="الرجوع إلى الصفحة الرئيسية">
+                            <img 
+                                src="/logo_svg.svg" 
+                                alt="النجم الأزرق للسياحة والسفر" 
+                                className="footer-logo-img"
+                                /* Updated attributes to match new CSS max-sizes */
+                                width="350"  
+                                height="120"
+                                loading="lazy" /* Changed to lazy for footer performance */
+                            />
+                        </Link>
+                        <p className="footer-desc">
+                            شريكك الموثوق في عالم السفر والسياحة. نقدم لك تجارب سفر استثنائية وخدمات راقية تليق بك.
+                        </p>
+                        <div className="social-links" role="list" aria-label="روابط التواصل الاجتماعي">
+                            {socialMedia.map((social, index) => (
+                                <a
+                                    key={index}
+                                    href={social.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={`social-link ${social.className || ''}`}
+                                    aria-label={social.label}
+                                    style={{ '--social-color': social.color }}
+                                >
+                                    {social.icon}
+                                </a>
+                            ))}
+                        </div>
+                    </div>
 
                     {/* Quick Links */}
                     <div className="footer-col">
@@ -103,4 +102,3 @@ const Footer = () => {
 };
 
 export default Footer;
-

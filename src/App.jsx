@@ -1,15 +1,43 @@
-import { useState } from 'react';
+import { useState, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Navbar, Footer } from './components/layout';
 import ErrorBoundary from './components/common/ErrorBoundary';
 import Analytics from './components/common/Analytics';
-import Home from './pages/Home';
-import About from './pages/About';
-import Services from './pages/Services';
-import Destinations from './pages/Destinations';
-import Contact from './pages/Contact';
-import Admin from './pages/Admin';
 import './App.css';
+
+// Lazy load pages for performance
+const Home = lazy(() => import('./pages/Home'));
+const About = lazy(() => import('./pages/About'));
+const Services = lazy(() => import('./pages/Services'));
+const Destinations = lazy(() => import('./pages/Destinations'));
+const Contact = lazy(() => import('./pages/Contact'));
+const Admin = lazy(() => import('./pages/Admin'));
+
+// Loading fallback component
+const PageLoader = () => (
+  <div className="page-loader" style={{ 
+    display: 'flex', 
+    justifyContent: 'center', 
+    alignItems: 'center', 
+    height: '60vh',
+    flexDirection: 'column',
+    gap: '20px'
+  }}>
+    <div className="spinner" style={{
+      width: '40px',
+      height: '40px',
+      border: '3px solid rgba(8, 145, 178, 0.1)',
+      borderTopColor: '#0891b2',
+      borderRadius: '50%',
+      animation: 'spin 1s linear infinite'
+    }}></div>
+    <style>{`
+      @keyframes spin {
+        to { transform: rotate(360deg); }
+      }
+    `}</style>
+  </div>
+);
 
 function App() {
   const [theme, setTheme] = useState('light');
@@ -37,14 +65,16 @@ function App() {
           </button> */}
 
           <main className="main-content">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/services" element={<Services />} />
-              <Route path="/destinations" element={<Destinations />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/admin" element={<Admin />} />
-            </Routes>
+            <Suspense fallback={<PageLoader />}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/destinations" element={<Destinations />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/admin" element={<Admin />} />
+              </Routes>
+            </Suspense>
           </main>
 
           <Footer />

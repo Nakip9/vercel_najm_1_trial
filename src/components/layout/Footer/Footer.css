@@ -68,10 +68,10 @@
 }
 
 .footer-logo-img {
-    height: 80px;
+    height: 100px;
     width: auto;
-    max-width: 250px;
-    min-width: 180px;
+    max-width: 320px;
+    min-width: 200px;
     object-fit: contain;
     object-position: center center;
     transition: opacity var(--transition-base);
@@ -106,17 +106,18 @@
 
 .footer-logo-img:hover {
     /* Subtle hover effect - professional and clean */
-    opacity: 0.9;
-    filter: drop-shadow(0 3px 10px rgba(0, 0, 0, 0.15));
+    opacity: 1;
+    transform: translateY(-2px);
+    filter: drop-shadow(0 6px 15px rgba(0, 0, 0, 0.2));
 }
 
 /* Desktop Logo Enhancement - Much More Visible */
 @media (min-width: 992px) {
     .footer-logo-img {
-        height: 120px;
-        max-width: 340px;
-        min-width: 260px;
-        filter: drop-shadow(0 3px 12px rgba(0, 0, 0, 0.12));
+        height: 140px;
+        max-width: 400px;
+        min-width: 280px;
+        filter: drop-shadow(0 3px 15px rgba(0, 0, 0, 0.15));
     }
     
     .footer-logo-text {
@@ -136,10 +137,10 @@
 
 @media (min-width: 1200px) {
     .footer-logo-img {
-        height: 140px;
-        max-width: 380px;
-        min-width: 300px;
-        filter: drop-shadow(0 3px 12px rgba(0, 0, 0, 0.12));
+        height: 160px;
+        max-width: 450px;
+        min-width: 320px;
+        filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.18));
     }
     
     .footer-logo-text {
@@ -375,9 +376,10 @@
     }
     
     .footer-logo-img {
-        height: 65px;
-        max-width: 180px;
-        min-width: 140px;
+        /* UPSCALE: Footer logo on tablet */
+        height: 100px;
+        max-width: 280px;
+        min-width: 200px;
     }
 }
 
@@ -407,9 +409,10 @@
     }
     
     .footer-logo-img {
-        height: 60px;
-        max-width: 160px;
-        min-width: 120px;
+        /* UPSCALE: Footer logo on mobile */
+        height: 100px; /* Same as navbar */
+        max-width: 260px;
+        min-width: 180px;
     }
     
     .footer-desc {
@@ -505,9 +508,10 @@
     }
     
     .footer-logo-img {
-        height: 55px;
-        max-width: 140px;
-        min-width: 110px;
+        /* UPSCALE: Footer logo on small mobile */
+        height: 90px;
+        max-width: 240px;
+        min-width: 160px;
     }
     
     .footer-desc {
