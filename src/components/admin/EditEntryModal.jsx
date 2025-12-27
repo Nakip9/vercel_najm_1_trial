@@ -119,7 +119,7 @@ const EditEntryModal = ({ entry, onClose, onSuccess }) => {
                 disabled={loading}
               >
                 <option value="pending">Pending</option>
-                <option value="processing">Processing</option>
+                <option value="in_embassy">In Embassy</option>
                 <option value="ready">Ready</option>
                 <option value="rejected">Rejected</option>
               </select>
@@ -155,4 +155,3 @@ const EditEntryModal = ({ entry, onClose, onSuccess }) => {
 };
 
 export default EditEntryModal;
-

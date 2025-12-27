@@ -1,5 +1,5 @@
 .contact-page {
-    padding-top: 80px;
+    /* Removed padding-top for full screen hero */
     overflow-x: hidden;
 }
 
@@ -9,13 +9,14 @@
 
 .contact-hero {
     position: relative;
-    min-height: 75vh;
+    min-height: 85vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow: hidden;
-    padding: max(3rem, env(safe-area-inset-top)) var(--spacing-md) max(3rem, env(safe-area-inset-bottom));
+    /* Increased top padding for navbar clearance */
+    padding: max(8rem, env(safe-area-inset-top)) var(--spacing-md) max(3rem, env(safe-area-inset-bottom));
     contain: layout style paint;
 }
 
@@ -35,12 +36,10 @@
 .contact-hero-overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-        135deg,
-        rgba(8, 145, 178, 0.85) 0%,
-        rgba(14, 116, 144, 0.75) 50%,
-        rgba(10, 36, 99, 0.8) 100%
-    );
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.4) 0%,
+            rgba(0, 0, 0, 0.5) 50%,
+            rgba(0, 54, 97, 0.8) 100%);
     z-index: 1;
 }
 
@@ -180,12 +179,12 @@
         gap: var(--spacing-2xl);
         align-items: start;
     }
-    
+
     .contact-info-wrapper {
         position: sticky;
         top: 100px;
     }
-    
+
     .contact-map-wrapper {
         padding: var(--spacing-2xl);
         max-width: 100%;
@@ -246,7 +245,7 @@
     .contact-card {
         padding: var(--spacing-xl);
     }
-    
+
     .contact-card-icon {
         width: 72px;
         height: 72px;
@@ -431,15 +430,15 @@
         min-height: 60vh;
         padding: max(2rem, env(safe-area-inset-top)) var(--spacing-sm) max(2rem, env(safe-area-inset-bottom));
     }
-    
+
     .contact-hero-content {
         gap: var(--spacing-sm);
     }
-    
+
     .contact-methods-floating {
         gap: 0.75rem;
     }
-    
+
     .contact-method-icon {
         width: 48px;
         height: 48px;
@@ -447,16 +446,16 @@
         min-height: 48px;
         font-size: 1.25rem;
     }
-    
+
     .contact-info-wrapper,
     .contact-map-wrapper {
         padding: var(--spacing-lg);
     }
-    
+
     .contact-cards-grid {
         gap: var(--spacing-sm);
     }
-    
+
     .map-info {
         flex-direction: column;
         text-align: center;
@@ -466,11 +465,12 @@
 
 /* Touch Device Optimizations */
 @media (hover: none) and (pointer: coarse) {
+
     .contact-method-icon,
     .contact-link {
         min-height: 44px;
     }
-    
+
     .contact-card {
         min-height: 44px;
     }
@@ -482,15 +482,15 @@
         animation: none;
         transform: scaleX(1);
     }
-    
+
     .contact-card:hover {
         transform: none;
     }
-    
+
     .contact-card-icon {
         transition: none;
     }
-    
+
     .map-container:hover iframe {
         transform: none;
     }
@@ -511,24 +511,22 @@
 
 /* Desktop-Specific Enhancements */
 @media (min-width: 1200px) {
-    .contact-page {
-        padding-top: 100px;
-    }
-    
+
+
     .contact-hero {
         min-height: 80vh;
     }
-    
+
     .contact-grid {
         max-width: 1400px;
         margin-left: auto;
         margin-right: auto;
     }
-    
+
     .contact-map-wrapper {
         box-shadow: var(--shadow-xl);
     }
-    
+
     .contact-info-wrapper {
         box-shadow: var(--shadow-lg);
     }

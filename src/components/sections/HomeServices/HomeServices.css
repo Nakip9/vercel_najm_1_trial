@@ -80,7 +80,7 @@
 
 .service-list-item.active .service-item-icon {
     background: var(--primary-cyan);
-    color: white;
+    color: #004B87;
 }
 
 .service-item-content {

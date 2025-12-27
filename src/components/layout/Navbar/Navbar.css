@@ -68,7 +68,8 @@
     /* SVG-specific optimizations for perfect sharpness */
     image-rendering: -webkit-optimize-contrast;
     image-rendering: crisp-edges;
-    image-rendering: auto; /* Best for SVG - smooth scaling */
+    image-rendering: auto;
+    /* Best for SVG - smooth scaling */
     /* Prevent blur on transform */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -99,24 +100,24 @@
     .navbar-logo {
         padding: var(--spacing-xs) 0;
     }
-    
+
     .logo-img {
         height: 60px;
         max-width: 180px;
         min-width: 140px;
     }
-    
+
     .navbar.scrolled .logo-img {
         height: 55px;
         max-width: 160px;
         min-width: 130px;
     }
-    
+
     .navbar {
         min-height: 80px;
         padding: var(--spacing-sm) 0;
     }
-    
+
     .navbar.scrolled {
         min-height: 75px;
         padding: var(--spacing-xs) 0;
@@ -127,23 +128,23 @@
     .navbar-logo {
         padding: 6px 0;
     }
-    
+
     .logo-img {
         height: 52px;
         max-width: 150px;
         min-width: 120px;
     }
-    
+
     .navbar.scrolled .logo-img {
         height: 48px;
         max-width: 140px;
         min-width: 110px;
     }
-    
+
     .navbar {
         min-height: 70px;
     }
-    
+
     .navbar.scrolled {
         min-height: 68px;
     }
@@ -154,23 +155,23 @@
     .navbar-logo {
         padding: var(--spacing-sm) 0;
     }
-    
+
     .logo-img {
         height: 85px;
         max-width: 300px;
         min-width: 220px;
     }
-    
+
     .navbar.scrolled .logo-img {
         height: 75px;
         max-width: 270px;
         min-width: 200px;
     }
-    
+
     .navbar {
         min-height: 105px;
     }
-    
+
     .navbar.scrolled {
         min-height: 90px;
     }
@@ -180,13 +181,13 @@
     .navbar-logo {
         padding: var(--spacing-sm) 0;
     }
-    
+
     .logo-img {
         height: 90px;
         max-width: 320px;
         min-width: 240px;
     }
-    
+
     .navbar.scrolled .logo-img {
         height: 80px;
         max-width: 290px;
@@ -362,7 +363,8 @@
 .mobile-nav-link.active {
     background-color: var(--bg-secondary);
     color: var(--primary-cyan);
-    transform: translateX(-4px); /* RTL direction */
+    transform: translateX(-4px);
+    /* RTL direction */
     padding-right: calc(var(--spacing-lg) + 4px);
 }
 

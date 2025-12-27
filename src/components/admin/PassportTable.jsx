@@ -42,7 +42,7 @@ const PassportTable = ({ entries, onRefresh, onDelete }) => {
   const getStatusBadge = (status) => {
     const badges = {
       ready: { label: 'Ready', className: 'badge-success' },
-      processing: { label: 'Processing', className: 'badge-warning' },
+      in_embassy: { label: 'In Embassy', className: 'badge-warning' },
       pending: { label: 'Pending', className: 'badge-info' },
       rejected: { label: 'Rejected', className: 'badge-error' },
     };
@@ -137,4 +137,3 @@ const PassportTable = ({ entries, onRefresh, onDelete }) => {
 };
 
 export default PassportTable;
-

@@ -4,7 +4,7 @@ import './WhatsAppWidget.css';
 
 const WhatsAppWidget = () => {
     const whatsappNumber = CONTACT_INFO.whatsapp.replace(/[^\d]/g, ''); // Remove all non-digits
-    
+
     return (
         <motion.a
             href={`https://wa.me/${whatsappNumber}`}

@@ -289,10 +289,10 @@
     justify-content: center;
     font-size: 1.25rem;
     color: var(--text-primary);
-    transition: all var(--transition-base);
+    transition: transform var(--transition-base), box-shadow var(--transition-base), color var(--transition-base), background-color var(--transition-base), opacity var(--transition-base);
     box-shadow: 
-        0 2px 8px rgba(0, 0, 0, 0.1),
-        0 0 0 1px rgba(0, 0, 0, 0.05);
+        0 2px 8px rgba(0, 0, 0, 0.08),
+        0 0 0 1px rgba(0, 75, 135, 0.06);
     text-decoration: none;
     position: relative;
     overflow: hidden;
@@ -302,7 +302,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: var(--social-color, var(--primary-cyan));
+    background: var(--social-color, var(--primary-blue));
     opacity: 0;
     transition: opacity var(--transition-base);
     border-radius: 50%;
@@ -311,33 +311,33 @@
 .social-link svg {
     position: relative;
     z-index: 1;
-    transition: all var(--transition-base);
+    transition: color var(--transition-base), transform var(--transition-base), opacity var(--transition-base);
 }
 
 [data-theme="dark"] .social-link {
     background: rgba(15, 23, 42, 0.6);
     color: var(--text-primary);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.05);
 }
 
 .social-link:hover {
-    transform: translateY(-4px) scale(1.1);
+    transform: translateY(-2px) scale(1.03);
     box-shadow: 
-        0 6px 20px rgba(0, 0, 0, 0.15),
-        0 0 0 1px rgba(0, 0, 0, 0.05),
-        0 0 30px var(--social-color, var(--primary-cyan));
+        0 6px 14px rgba(0, 0, 0, 0.12),
+        0 0 0 1px rgba(0, 75, 135, 0.08);
 }
 
 .social-link:hover::before {
-    opacity: 0.15;
+    opacity: 0.1;
 }
 
 .social-link:hover svg {
-    color: var(--social-color, var(--primary-cyan));
-    transform: scale(1.1);
+    color: var(--social-color, var(--primary-blue));
+    transform: scale(1.04);
 }
 
 .social-link:active {
-    transform: translateY(-2px) scale(1.05);
+    transform: translateY(-1px) scale(1.02);
 }
 
 .footer-bottom {
@@ -540,6 +540,11 @@
         flex-direction: row;
         align-items: center;
     }
+}
+
+/* X (formerly Twitter) brand adjustment */
+.social-link.x {
+    --social-color: #000000;
 }
 
 /* Touch device optimizations */

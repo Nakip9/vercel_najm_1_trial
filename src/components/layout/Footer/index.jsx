@@ -1,17 +1,18 @@
 import { Link } from 'react-router-dom';
-import { FiTwitter, FiInstagram, FiFacebook, FiLinkedin, FiPhone, FiMail, FiMapPin } from 'react-icons/fi';
+import { FiInstagram, FiFacebook, FiLinkedin, FiPhone, FiMail, FiMapPin } from 'react-icons/fi';
 import { SOCIAL_LINKS, COMPANY_INFO, CONTACT_INFO } from '../../../constants/company';
+import { SiX } from 'react-icons/si';
 import './Footer.css';
 
 const Footer = () => {
     const socialMedia = [
-        { icon: <FiTwitter />, href: SOCIAL_LINKS.twitter, label: 'تويتر', color: '#1DA1F2' },
+        { icon: <SiX />, href: SOCIAL_LINKS.twitter, label: 'X', color: '#000000', className: 'x' },
         { icon: <FiInstagram />, href: SOCIAL_LINKS.instagram, label: 'إنستغرام', color: '#E4405F' },
         { icon: <FiFacebook />, href: SOCIAL_LINKS.facebook, label: 'فيسبوك', color: '#1877F2' },
         { icon: <FiLinkedin />, href: SOCIAL_LINKS.linkedin, label: 'لينكد إن', color: '#0077B5' }
     ];
 
-    return (
+    return (    
         <footer className="footer">
             <div className="container">
                 <div className="footer-grid">
@@ -39,7 +40,7 @@ const Footer = () => {
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="social-link"
+                className={`social-link ${social.className || ''}`}
                 aria-label={social.label}
                 style={{ '--social-color': social.color }}
             >

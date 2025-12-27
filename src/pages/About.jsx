@@ -1,286 +1,304 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
-    FiChevronRight,
     FiArrowLeft,
-    FiStar,
+    FiTarget,
+    FiAward,
     FiUsers,
-    FiGlobe,
-    FiAward
+    FiTrendingUp,
+    FiMapPin,
+    FiSmile,
+    FiCheckCircle
 } from 'react-icons/fi';
+import LazyImage from '../components/common/LazyImage';
 import './About.css';
 
 const About = () => {
-    const [activeSection, setActiveSection] = useState('story');
+    const containerRef = useRef(null);
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start start", "end end"]
+    });
+
+    const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+
+    // Stagger animation variants
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.2
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 30 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
+        }
+    };
+
     const scrollToContent = () => {
-    const sectionNav = document.querySelector('.section-nav');
-    if (sectionNav) {
-        sectionNav.scrollIntoView({ behavior: 'smooth' });
-    }
-};
-    const sections = [
-        { id: 'story', title: 'قصتنا', number: '01' },
-        { id: 'values', title: 'قيمنا', number: '02' },
-        { id: 'team', title: 'فريقنا', number: '03' }
-    ];
+        const storySection = document.querySelector('.story-section');
+        if (storySection) {
+            storySection.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
 
     return (
-        <div className="about-minimal">
-            {/* Hero Section - Minimalist */}
-            <section className="about-hero-minimal">
-                <div className="hero-background">
-                    <div className="gradient-overlay"></div>
-                    <div className="grid-pattern"></div>
+        <div className="about-modern" ref={containerRef}>
+            {/* --- Section 1: Parallax Hero --- */}
+            <header className="about-hero-modern">
+                <motion.div style={{ y }} className="hero-bg-parallax">
+                    <LazyImage 
+                        src="/hero-bg.jpg" 
+                        alt="خلفية النجم الأزرق" 
+                        className="parallax-img" 
+                    />
+                    <div className="hero-overlay-gradient"></div>
+                </motion.div>
+
+                <div className="container hero-content-modern">
+                    <motion.div 
+                        initial="hidden"
+                        animate="visible"
+                        variants={containerVariants}
+                        className="hero-text-wrapper"
+                    >
+                        <motion.span variants={itemVariants} className="hero-badge-glass">
+                            منذ 2008
+                        </motion.span>
+                        <motion.h1 variants={itemVariants} className="hero-title-modern">
+                            لسنا مجرد وكالة سفر، <br />
+                            <span className="text-gradient">نحن رفقاء رحلتك.</span>
+                        </motion.h1>
+                        <motion.p variants={itemVariants} className="hero-desc-modern">
+                            في "النجم الأزرق"، نؤمن أن السفر ليس مجرد انتقال من مكان لآخر، بل هو فن صناعة الذكريات. 
+                            نجمع بين الخبرة العريقة والرؤية العصرية لنقدم لك تجربة لا تُنسى.
+                        </motion.p>
+                    </motion.div>
                 </div>
                 
+                {/* Scroll Indicator */}
+                <motion.div 
+                    className="scroll-mouse"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 1, duration: 1 }}
+                    onClick={scrollToContent}
+                    style={{ cursor: 'pointer' }}
+                >
+                    <div className="wheel"></div>
+                </motion.div>
+            </header>
+
+            {/* --- Section 2: The Story (Image Collage) --- */}
+            <section className="section story-section">
                 <div className="container">
-                    <div className="hero-content-wrapper">
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            className="hero-breadcrumb"
+                    <div className="story-grid">
+                        <motion.div 
+                            className="story-content"
+                            initial={{ opacity: 0, x: 50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            transition={{ duration: 0.8 }}
                         >
-                            <Link to="/" className="breadcrumb-link">
-                                <FiArrowLeft />
-                                الرئيسية
-                            </Link>
-                            <span className="breadcrumb-separator">/</span>
-                            <span className="breadcrumb-current">من نحن</span>
+                            <span className="section-label">قصتنا</span>
+                            <h2 className="section-heading">
+                                من مكتب صغير إلى <br/>
+                                <span className="highlight-underline">نافذة على العالم</span>
+                            </h2>
+                            <p className="story-text">
+                                بدأت حكايتنا بشغف بسيط: كيف يمكننا جعل السفر أسهل وأكثر متعة؟ 
+                                انطلقنا من صنعاء برؤية واضحة، ورغم التحديات، استطعنا أن نبني جسراً من الثقة مع عملائنا.
+                            </p>
+                            <p className="story-text">
+                                اليوم، وبعد مرور أكثر من 15 عاماً، نفخر بأننا لسنا مجرد مقدمي خدمة، بل مستشارين مؤتمنين 
+                                لأحلام آلاف المسافرين، نفتح لهم أبواب العالم بمصداقية واحترافية.
+                            </p>
+                            
+                            <div className="story-stats">
+                                <div className="story-stat-item">
+                                    <span className="stat-num">15+</span>
+                                    <span className="stat-label">سنة خبرة</span>
+                                </div>
+                                <div className="story-stat-item">
+                                    <span className="stat-num">50k+</span>
+                                    <span className="stat-label">عميل سعيد</span>
+                                </div>
+                            </div>
                         </motion.div>
 
-                        <div className="hero-main">
-                            <motion.div
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.1 }}
-                                className="hero-text"
-                            >
-                            <h1 className="hero-title">
-                                <span className="title-line title-line-1">اكتشف قصة نجاحنا</span>
-                                <span className="title-line title-line-2">
-                                    النجم الأزرق
-                                    <span className="title-highlight">.<br />للرحلات</span> {/* Added <br /> to break the line */}
-                                </span>
-                            </h1>
-
-                                
-                                <p className="hero-subtitle">
-                                    منذ 2008، نرسم مسارات السفر الأكثر تفرداً 
-                                    وراحةً لعملائنا. نحن أكثر من مجرد وكالة سفر - 
-                                    نحن شركاؤك في رحلتك نحو الذكريات التي لا تُنسى.
-                                </p>
-
-                                <div className="hero-stats">
-                                    <div className="stat">
-                                        <span className="stat-number">15+</span>
-                                        <span className="stat-label">سنة خبرة</span>
-                                    </div>
-                                    <div className="stat">
-                                        <span className="stat-number">50K+</span>
-                                        <span className="stat-label">عميل سعيد</span>
-                                    </div>
-                                    <div className="stat">
-                                        <span className="stat-number">120+</span>
-                                        <span className="stat-label">وجهة</span>
+                        <motion.div 
+                            className="story-visuals"
+                            initial={{ opacity: 0, x: -50 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true, margin: "-100px" }}
+                            transition={{ duration: 0.8 }}
+                        >
+                            <div className="collage-wrapper">
+                                <div className="collage-img-lg">
+                                    <LazyImage src="/dubai.jpg" alt="سفر وسياحة" />
+                                </div>
+                                <div className="collage-img-sm glass-card">
+                                    <LazyImage src="/london.jpeg" alt="وجهات عالمية" />
+                                    <div className="collage-badge">
+                                        <FiTrendingUp />
+                                        <span>نمو مستمر</span>
                                     </div>
                                 </div>
-
-                                <div className="hero-actions">
-                                    <Link to="/contact" className="btn btn-primary">
-                                        ابدأ رحلتك
-                                        <FiChevronRight />
-                                    </Link>
-                                    <button className="btn-text" onClick={scrollToContent}>
-                                        تعرف أكثر
-                                        <span className="arrow">↓</span>
-                                    </button>
-                                </div>
-                                
-                            </motion.div>
-
-                            <motion.div
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ delay: 0.2 }}
-                                className="hero-visual"
-                            >
-                                <div className="visual-frame">
-                                    <div className="frame-content">
-                                        <div className="frame-item item-1">
-                                            <FiStar />
-                                            <span>أفضل خدمة</span>
-                                        </div>
-                                        <div className="frame-item item-2">
-                                            <FiUsers />
-                                            <span>فريق متخصص</span>
-                                        </div>
-                                        <div className="frame-item item-3">
-                                            <FiGlobe />
-                                            <span>عالمية</span>
-                                        </div>
-                                        <div className="frame-item item-4">
-                                            <FiAward />
-                                            <span>ضمان الجودة</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </motion.div>
-                        </div>
+                                {/* Decorative elements */}
+                                <div className="circle-decor"></div>
+                                <div className="dots-decor"></div>
+                            </div>
+                        </motion.div>
                     </div>
                 </div>
             </section>
 
-            {/* Navigation Tabs */}
-            <section className="section-nav">
+            {/* --- Section 3: Values (Modern Bento Grid) --- */}
+            <section className="section values-section-modern">
                 <div className="container">
-                    <div className="nav-tabs">
-                        {sections.map((section) => (
-                            <button
-                                key={section.id}
-                                className={`nav-tab ${activeSection === section.id ? 'active' : ''}`}
-                                onClick={() => setActiveSection(section.id)}
-                            >
-                                <span className="tab-number">{section.number}</span>
-                                <span className="tab-title">{section.title}</span>
-                            </button>
-                        ))}
+                    <div className="section-header-center mb-5">
+                        <motion.span 
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            className="section-tag"
+                        >
+                            لماذا تختارنا؟
+                        </motion.span>
+                        <motion.h2 
+                            initial={{ opacity: 0, y: 10 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.1 }}
+                            className="section-heading"
+                        >
+                            قيمٌ نلتزم بها في كل رحلة
+                        </motion.h2>
+                    </div>
+
+                    <div className="bento-grid-modern">
+                        {/* 1. Vision Card (Featured) */}
+                        <motion.div 
+                            className="bento-item vision-card"
+                            whileHover={{ y: -5 }}
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                        >
+                            <div className="card-overlay"></div>
+                            <div className="bento-content relative z-10">
+                                <div className="icon-wrapper glass-icon mb-4">
+                                    <FiTarget />
+                                </div>
+                                <h3>رؤيتنا للمستقبل</h3>
+                                <p>أن نكون الخيار الأول للمسافر العربي، عبر تقديم حلول سفر مبتكرة تجمع بين الفخامة، السهولة، والسعر المناسب.</p>
+                            </div>
+                            <div className="bg-pattern"></div>
+                        </motion.div>
+
+                        {/* 2. Trust Card (Vertical) */}
+                        <motion.div 
+                            className="bento-item trust-card"
+                            whileHover={{ y: -5 }}
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.1 }}
+                        >
+                            <div className="trust-badge">
+                                <FiCheckCircle /> 100% شفافية
+                            </div>
+                            <div className="bento-content mt-auto">
+                                <div className="icon-wrapper mb-3 text-amber-500">
+                                    <FiAward size={32} />
+                                </div>
+                                <h3>المصداقية أولاً</h3>
+                                <p>لا رسوم خفية، ولا وعود زائفة. الشفافية هي عملتنا، وما نتفق عليه هو ما تحصل عليه بالضبط.</p>
+                            </div>
+                        </motion.div>
+
+                        {/* 3. Team Card */}
+                        <motion.div 
+                            className="bento-item team-card"
+                            whileHover={{ scale: 1.02 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.2 }}
+                        >
+                            <div className="flex items-center justify-between mb-3">
+                                <div className="icon-wrapper text-blue-600">
+                                    <FiUsers />
+                                </div>
+                                <span className="tiny-tag">دعم 24/7</span>
+                            </div>
+                            <h3>فريق محترف</h3>
+                            <p>مستشارون ذوو خبرة عالية جاهزون لخدمتك في أي وقت.</p>
+                        </motion.div>
+
+                        {/* 4. Global Coverage */}
+                        <motion.div 
+                            className="bento-item map-card"
+                            whileHover={{ scale: 1.02 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.3 }}
+                        >
+                            <div className="bento-content">
+                                <div className="icon-wrapper text-teal-600 mb-3">
+                                    <FiMapPin />
+                                </div>
+                                <h3>تغطية عالمية</h3>
+                                <p>شبكة واسعة من الشركاء في أكثر من 50 دولة.</p>
+                            </div>
+                            <div className="map-dots-decoration"></div>
+                        </motion.div>
+
+                        {/* 5. Comfort/Service */}
+                        <motion.div 
+                            className="bento-item service-card"
+                            whileHover={{ scale: 1.02 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.4 }}
+                        >
+                            <div className="bento-content">
+                                <div className="icon-wrapper text-rose-500 mb-3">
+                                    <FiSmile />
+                                </div>
+                                <h3>راحة بالك</h3>
+                                <p>نهتم بأدق التفاصيل الصغيرة لتستمتع برحلتك دون قلق.</p>
+                            </div>
+                        </motion.div>
                     </div>
                 </div>
             </section>
 
-            {/* Content Sections */}
-            <div className="content-sections">
-                {/* Story Section */}
-                {activeSection === 'story' && (
-                    <motion.section
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        className="content-section"
-                    >
-                        <div className="container">
-                            <div className="section-content">
-                                <div className="content-text">
-                                    <h2 className="section-title">من مكتب صغير إلى علامة رائدة</h2>
-                                    <p className="section-description">
-                                        بدأنا في 2008 بمهمة واضحة: تبسيط السفر وجعله تجربة استثنائية. 
-                                        اليوم، نحن شريكك الموثوق لأي رحلة، مهما كانت وجهتك.
-                                    </p>
-                                    <div className="content-points">
-                                        <div className="point">
-                                            <div className="point-number">01</div>
-                                            <div className="point-content">
-                                                <h3>البداية</h3>
-                                                <p>مكتب صغير بحلم كبير</p>
-                                            </div>
-                                        </div>
-                                        <div className="point">
-                                            <div className="point-number">02</div>
-                                            <div className="point-content">
-                                                <h3>التطور</h3>
-                                                <p>شراكات استراتيجية عالمية</p>
-                                            </div>
-                                        </div>
-                                        <div className="point">
-                                            <div className="point-number">03</div>
-                                            <div className="point-content">
-                                                <h3>الحاضر</h3>
-                                                <p>وكالة رائدة مع فريق متخصص</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </motion.section>
-                )}
-
-                {/* Values Section */}
-                {activeSection === 'values' && (
-                    <motion.section
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        className="content-section"
-                    >
-                        <div className="container">
-                            <div className="section-content">
-                                <div className="content-text">
-                                    <h2 className="section-title">ما يميزنا</h2>
-                                    <p className="section-description">
-                                        مبادئنا هي أساس كل خدمة نقدمها. نؤمن أن السفر الجيد يبدأ بقيم راسخة.
-                                    </p>
-                                    <div className="values-grid">
-                                        <div className="value">
-                                            <div className="value-icon">✓</div>
-                                            <h3>الشفافية</h3>
-                                            <p>أسعار واضحة بدون مفاجآت</p>
-                                        </div>
-                                        <div className="value">
-                                            <div className="value-icon">❤</div>
-                                            <h3>الاهتمام</h3>
-                                            <p>نستمع ونفهم احتياجاتك</p>
-                                        </div>
-                                        <div className="value">
-                                            <div className="value-icon">⚡</div>
-                                            <h3>الكفاءة</h3>
-                                            <p>حلول سريعة ودقيقة</p>
-                                        </div>
-                                        <div className="value">
-                                            <div className="value-icon">🛡</div>
-                                            <h3>الموثوقية</h3>
-                                            <p>ثقة بنيت عبر السنين</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </motion.section>
-                )}
-
-                {/* Team Section */}
-                {activeSection === 'team' && (
-                    <motion.section
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        className="content-section"
-                    >
-                        <div className="container">
-                            <div className="section-content">
-                                <div className="content-text">
-                                    <h2 className="section-title">فريق الخبراء</h2>
-                                    <p className="section-description">
-                                        محترفون متخصصون في كل مجال من مجالات السفر والسياحة.
-                                    </p>
-                                    <div className="team-stats">
-                                        <div className="team-stat">
-                                            <span className="team-number">15+</span>
-                                            <span className="team-label">مستشار سياحي</span>
-                                        </div>
-                                        <div className="team-stat">
-                                            <span className="team-number">24/7</span>
-                                            <span className="team-label">دعم فني</span>
-                                        </div>
-                                        <div className="team-stat">
-                                            <span className="team-number">10+</span>
-                                            <span className="team-label">لغة متاحة</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </motion.section>
-                )}
-            </div>
-
-            {/* Minimal CTA */}
-            <section className="minimal-cta">
+            {/* --- Section 4: Modern CTA --- */}
+            <section className="cta-modern-section">
                 <div className="container">
-                    <div className="cta-content">
-                        <h2>مستعد للسفر؟</h2>
-                        <p>تواصل مع مستشارينا اليوم</p>
-                        <Link to="/contact" className="btn btn-primary">
-                            احجز استشارة مجانية
-                        </Link>
+                    <div className="cta-modern-card">
+                        <div className="cta-modern-content">
+                            <h2>هل أنت مستعد لمغامرتك القادمة؟</h2>
+                            <p>دعنا نخطط لرحلتك بينما تتفرغ أنت لتجهيز حقائبك.</p>
+                            <div className="cta-buttons">
+                                <Link to="/contact" className="btn btn-primary btn-lg border-white">
+                                    ابدأ التخطيط الآن <FiArrowLeft />
+                                </Link>
+                                <Link to="/services" className="btn btn-outline btn-lg text-white border-white hover-white">
+                                    استكشف خدماتنا
+                                </Link>
+                            </div>
+                        </div>
+                        <div className="cta-pattern-overlay"></div>
                     </div>
                 </div>
             </section>

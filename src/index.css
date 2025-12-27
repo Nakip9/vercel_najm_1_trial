@@ -1,21 +1,25 @@
 /* ========================================
-   النجم الأزرق - Modern Design System (Option B)
-   Tropical Sunset Palette & Modern UI
+   النجم الأزرق - Modern Design System 
+   Brand Identity: Deep Cerulean (#004B87)
 ======================================== */
 
 /* ============ CSS Variables ============ */
 :root {
-  /* Tropical Sunset Palette */
-  --primary-cyan: #0891B2;
-  /* Ocean Blue - Primary Action */
-  --primary-dark: #0E7490;
-  /* Darker Ocean - Hover/Active */
+  /* Brand Primary Color (Extracted from your image) */
+  --primary-blue: #004B87;
+  /* Deep Cerulean - Main Identity */
+  --primary-dark: #003661;
+  /* Darker Navy - Hover/Active states */
+  --primary-light: #1E6EB0;
+  /* Lighter Blue - Subtle accents */
+
+  /* Tropical Sunset Palette (Balanced for deep blue) */
   --accent-amber: #F59E0B;
   /* Sunset Orange - Highlights/Buttons */
-  --accent-coral: #EC4899;
-  /* Vibrant Coral - Special Accents */
-  --secondary-teal: #14B8A6;
-  /* Teal - Success/Nature */
+  --accent-coral: #FB7185;
+  /* Soft Vibrant Coral - Special Accents */
+  --secondary-teal: #0D9488;
+  /* Dark Teal - Success/Nature */
 
   /* Neutral Colors (Modern & Clean) */
   --bg-primary: #FFFFFF;
@@ -30,24 +34,24 @@
   --text-muted: #94A3B8;
   /* Slate 400 */
 
-  /* Modern Glassmorphism (Lighter) */
-  --glass-bg: rgba(255, 255, 255, 0.7);
+  /* Modern Glassmorphism (Tinted with brand blue) */
+  --glass-bg: rgba(255, 255, 255, 0.75);
   --glass-border: rgba(255, 255, 255, 0.5);
-  --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  --glass-shadow: 0 8px 32px 0 rgba(0, 75, 135, 0.12);
   --glass-blur: blur(12px);
 
   /* Gradients */
-  --gradient-ocean: linear-gradient(135deg, #06B6D4 0%, #0891B2 100%);
+  --gradient-ocean: linear-gradient(135deg, #004B87 0%, #0E7490 100%);
   --gradient-sunset: linear-gradient(135deg, #F59E0B 0%, #EA580C 100%);
-  --gradient-tropical: linear-gradient(135deg, #06B6D4 0%, #F59E0B 100%);
-  --gradient-overlay: linear-gradient(180deg, rgba(8, 145, 178, 0.4) 0%, rgba(15, 23, 42, 0.8) 100%);
+  --gradient-tropical: linear-gradient(135deg, #004B87 0%, #0D9488 100%);
+  --gradient-overlay: linear-gradient(180deg, rgba(0, 75, 135, 0.8) 0%, rgba(15, 23, 42, 0.95) 100%);
 
-  /* Shadows (Soft & Modern) */
+  /* Shadows (Tinted for a high-end feel) */
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  --shadow-glow: 0 0 20px rgba(8, 145, 178, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 75, 135, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 75, 135, 0.12), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 75, 135, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-glow: 0 0 20px rgba(0, 75, 135, 0.25);
 
   /* Spacing (Mobile-First) */
   --spacing-xs: 0.5rem;
@@ -92,8 +96,6 @@
   --z-popover: 1060;
   --z-tooltip: 1070;
 }
-
-
 
 /* ============ Global Reset ============ */
 *,
@@ -167,21 +169,20 @@ p {
 }
 
 a {
-  color: var(--primary-cyan);
+  color: var(--primary-blue);
   text-decoration: none;
   transition: color var(--transition-fast);
   font-weight: 500;
 }
 
 a:hover {
-  color: var(--accent-amber);
+  color: var(--primary-light);
 }
 
 /* ============ Layout Utilities ============ */
 .container {
   width: 100%;
   max-width: 1280px;
-  /* Wider container for modern look */
   margin: 0 auto;
   padding: 0 var(--spacing-md);
 }
@@ -198,7 +199,7 @@ a:hover {
   overflow: hidden;
 }
 
-/* ============ Button Styles (Modern) ============ */
+/* ============ Button Styles ============ */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -206,14 +207,12 @@ a:hover {
   gap: var(--spacing-xs);
   padding: 16px 32px;
   min-height: 52px;
-  /* Larger touch target */
   font-family: var(--font-heading);
   font-size: var(--font-base);
   font-weight: 700;
   text-align: center;
   border: none;
   border-radius: var(--radius-full);
-  /* Pill shape */
   cursor: pointer;
   transition: all var(--transition-base);
   text-decoration: none;
@@ -224,12 +223,13 @@ a:hover {
 }
 
 .btn-primary {
-  background: var(--gradient-ocean);
+  background: var(--primary-blue);
   color: white;
   box-shadow: var(--shadow-lg);
 }
 
 .btn-primary:hover {
+  background: var(--primary-dark);
   transform: translateY(-3px);
   box-shadow: var(--shadow-glow);
 }
@@ -247,29 +247,28 @@ a:hover {
 
 .btn-outline {
   background: transparent;
-  color: var(--primary-cyan);
-  border: 2px solid var(--primary-cyan);
+  color: var(--primary-blue);
+  border: 2px solid var(--primary-blue);
 }
 
 .btn-outline:hover {
-  background: var(--primary-cyan);
+  background: var(--primary-blue);
   color: white;
   transform: translateY(-3px);
 }
 
-/* Mobile tap feedback */
 .btn:active {
   transform: translateY(0) scale(0.98);
 }
 
-/* ============ Card Styles (Modern) ============ */
+/* ============ Card Styles ============ */
 .card {
   background: var(--bg-primary);
   border-radius: var(--radius-lg);
   padding: var(--spacing-lg);
   box-shadow: var(--shadow-md);
   transition: all var(--transition-base);
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(0, 75, 135, 0.05);
 }
 
 .card:hover {
@@ -288,13 +287,6 @@ a:hover {
 /* ============ Utilities ============ */
 .text-gradient {
   background: var(--gradient-ocean);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.text-gradient-sunset {
-  background: var(--gradient-sunset);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -338,11 +330,11 @@ a:hover {
 
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(8, 145, 178, 0.4);
+    box-shadow: 0 0 0 0 rgba(0, 75, 135, 0.4);
   }
 
   70% {
-    box-shadow: 0 0 0 20px rgba(8, 145, 178, 0);
+    box-shadow: 0 0 0 20px rgba(0, 75, 135, 0);
   }
 }
 
@@ -354,7 +346,7 @@ a:hover {
   animation: pulse-glow 2s infinite;
 }
 
-/* ============ Form Styles (Modern) ============ */
+/* ============ Form Styles ============ */
 .form-input,
 .form-textarea {
   width: 100%;
@@ -372,9 +364,9 @@ a:hover {
 .form-input:focus,
 .form-textarea:focus {
   outline: none;
-  border-color: var(--primary-cyan);
+  border-color: var(--primary-blue);
   background-color: var(--bg-primary);
-  box-shadow: 0 0 0 4px rgba(8, 145, 178, 0.1);
+  box-shadow: 0 0 0 4px rgba(0, 75, 135, 0.1);
 }
 
 /* ============ Mobile Optimizations ============ */
@@ -389,15 +381,5 @@ a:hover {
 
   .container {
     padding: 0 var(--spacing-sm);
-  }
-
-  /* Hide scrollbars for horizontal scrolling areas */
-  .hide-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-
-  .hide-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
   }
 }

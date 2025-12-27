@@ -69,10 +69,6 @@ const DestinationsCarousel = () => {
                                 </div>
 
                                 <div className="grid-footer">
-                                    <div className="grid-duration">
-                                        <FiClock />
-                                        <span>{dest.duration}</span>
-                                    </div>
                                     <span className="grid-cta">
                                         استكشف
                                     </span>

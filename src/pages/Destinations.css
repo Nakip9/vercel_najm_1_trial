@@ -1,5 +1,5 @@
 .destinations-page {
-    padding-top: 80px;
+    /* Removed padding-top to allow hero to start at top of screen behind navbar */
     overflow-x: hidden;
 }
 
@@ -9,14 +9,20 @@
 
 .destinations-hero {
     position: relative;
-    min-height: 75vh;
+    min-height: 85vh;
+    /* Increased height for better impact */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: var(--gradient-ocean);
+    /* Updated background to image as requested */
+    background-image: url('/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Removed solid gradient background */
     overflow: hidden;
-    padding: max(3rem, env(safe-area-inset-top)) var(--spacing-md) max(3rem, env(safe-area-inset-bottom));
+    padding: max(8rem, env(safe-area-inset-top)) var(--spacing-md) max(3rem, env(safe-area-inset-bottom));
     /* Performance optimization */
     contain: layout style paint;
 }
@@ -24,16 +30,11 @@
 .destinations-hero-overlay {
     position: absolute;
     inset: 0;
-    background: radial-gradient(
-        circle at 30% 50%,
-        rgba(8, 145, 178, 0.3) 0%,
-        transparent 50%
-    ),
-    radial-gradient(
-        circle at 70% 50%,
-        rgba(14, 116, 144, 0.2) 0%,
-        transparent 50%
-    );
+    /* Darker overlay for better text readability over image */
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.4) 0%,
+            rgba(0, 0, 0, 0.5) 50%,
+            rgba(0, 54, 97, 0.8) 100%);
     z-index: 1;
 }
 
@@ -116,20 +117,16 @@
     overflow: hidden;
     margin: var(--spacing-md) 0;
     position: relative;
-    mask-image: linear-gradient(
-        to right,
-        transparent 0%,
-        black 8%,
-        black 92%,
-        transparent 100%
-    );
-    -webkit-mask-image: linear-gradient(
-        to right,
-        transparent 0%,
-        black 8%,
-        black 92%,
-        transparent 100%
-    );
+    mask-image: linear-gradient(to right,
+            transparent 0%,
+            black 8%,
+            black 92%,
+            transparent 100%);
+    -webkit-mask-image: linear-gradient(to right,
+            transparent 0%,
+            black 8%,
+            black 92%,
+            transparent 100%);
 }
 
 .destinations-sliding-text {
@@ -146,6 +143,7 @@
     0% {
         transform: translateX(0);
     }
+
     100% {
         transform: translateX(-50%);
     }
@@ -250,12 +248,12 @@
         justify-content: center;
         flex-wrap: wrap;
     }
-    
+
     .destinations-title-underline {
         animation: none;
         transform: scaleX(1);
     }
-    
+
     .destinations-cta-button:hover {
         transform: none;
     }
@@ -267,19 +265,19 @@
         min-height: 60vh;
         padding: max(2rem, env(safe-area-inset-top)) var(--spacing-sm) max(2rem, env(safe-area-inset-bottom));
     }
-    
+
     .destinations-hero-content {
         gap: var(--spacing-sm);
     }
-    
+
     .destinations-sliding-text {
         gap: 1rem;
     }
-    
+
     .sliding-word {
         padding: 0.4rem 1rem;
     }
-    
+
     .destinations-hero-decoration {
         width: 80px;
         height: 80px;
@@ -292,7 +290,7 @@
     .destinations-hero-badge {
         min-height: 44px;
     }
-    
+
     .sliding-word {
         min-height: 44px;
         display: inline-flex;
@@ -497,6 +495,7 @@
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);

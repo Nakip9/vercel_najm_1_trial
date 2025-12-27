@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { 
@@ -148,5 +149,5 @@ const ExpandableServiceCard = ({
     );
 };
 
-export default ExpandableServiceCard;
+export default memo(ExpandableServiceCard);
 

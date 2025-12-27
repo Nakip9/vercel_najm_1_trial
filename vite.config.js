@@ -26,5 +26,8 @@ export default defineConfig({
   server: {
     port: 3000,
     open: true,
+    strictPort: true,
+    host: true,         // <-- ADD THIS: Tells Vite to listen to the network
+    allowedHosts: true, // <-- Keep this: Tells Vite to trust the Cloudflare link
   },
 })

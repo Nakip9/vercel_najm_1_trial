@@ -18,7 +18,12 @@ const Contact = () => {
     const contactMethods = [
         { icon: <FiPhone />, label: 'اتصل بنا', method: `tel:${CONTACT_INFO.phone.replace(/\s/g, '')}` },
         { icon: <FiMail />, label: 'راسلنا', method: `mailto:${CONTACT_INFO.email}` },
-        { icon: <FiMapPin />, label: 'موقعنا', method: 'https://maps.google.com/?q=شارع+حدّة،+صنعاء،+اليمن', onClick: handleMapClick }
+        { 
+            icon: <FiMapPin />, 
+            label: 'موقعنا', 
+            method: 'https://maps.google.com/?q=صنعاء+شارع+القدس+مقابل+السفارة+السعودية', 
+            onClick: handleMapClick 
+        }
     ];
 
     return (
@@ -131,9 +136,6 @@ const Contact = () => {
                                 <h4 className="contact-card-title">الهاتف</h4>
                                 <div className="contact-card-content">
                                     <a href={`tel:${CONTACT_INFO.phone.replace(/\s/g, '')}`} className="contact-link">{CONTACT_INFO.phone}</a>
-                                    {CONTACT_INFO.whatsapp && (
-                                        <a href={`tel:${CONTACT_INFO.whatsapp.replace(/\s/g, '')}`} className="contact-link">{CONTACT_INFO.whatsapp}</a>
-                                    )}
                                 </div>
                             </motion.div>
 
@@ -198,14 +200,14 @@ const Contact = () => {
                         <h2 className="contact-title">موقعنا على الخريطة</h2>
                         <div className="map-container">
                             <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3218.4999999999995!2d44.196999!3d15.369999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTVcxYTHpTMgNDJow4!5e0!3m2!1sar!2sye!4v1630000000000!5m2!1sar!2sye"
-                                width="100%"
-                                height="450"
-                                style={{ border: 0, borderRadius: 'var(--radius-lg)' }}
-                                allowFullScreen=""
-                                loading="lazy"
-                                referrerPolicy="no-referrer-when-downgrade"
-                                title="موقعنا في شارع حدّة، صنعاء، اليمن"
+                            src="https://maps.google.com/maps?q=Sana'a+Al+Quds+Street+Opposite+Saudi+Embassy&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                            width="100%"
+                            height="450"
+                            style={{ border: 0, borderRadius: 'var(--radius-lg)' }}
+                            allowFullScreen=""
+                            loading="lazy"
+                            referrerPolicy="no-referrer-when-downgrade"
+                            title="موقعنا في شارع القدس، صنعاء، مقابل السفارة السعودية"
                             ></iframe>
                         </div>
                         <div className="map-info">
@@ -213,8 +215,8 @@ const Contact = () => {
                                 <FiMapPin />
                             </div>
                             <div>
-                                <h4>شارع حدّة، صنعاء</h4>
-                                <p>اليمن - سهل الوصول والمواقف المتاحة</p>
+                                <h4>شارع القدس، صنعاء</h4>
+                                <p>مقابل السفارة السعودية</p>
                             </div>
                         </div>
                     </motion.div>

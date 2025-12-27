@@ -35,9 +35,9 @@ const Navbar = () => {
       <div className="container navbar-container">
         {/* Logo */}
         <Link to="/" className="navbar-logo" aria-label="النجم الأزرق للسياحة والسفر - العودة إلى الصفحة الرئيسية">
-          <img 
-            src="/logo_svg.svg" 
-            alt="النجم الأزرق للسياحة والسفر" 
+          <img
+            src="/logo_svg.svg"
+            alt="النجم الأزرق للسياحة والسفر"
             className="logo-img"
             width="320"
             height="90"
@@ -67,7 +67,16 @@ const Navbar = () => {
 
         {/* Desktop CTA */}
         <div className="navbar-cta">
-          <Link to="/contact" className="btn btn-primary btn-sm">
+          <Link
+            to="/contact"
+            className="btn btn-primary"
+            // Inline styles to override the class colors directly
+            style={{
+              backgroundColor: '#004B87',
+              borderColor: '#1428A0',
+              color: 'white'
+            }}
+          >
             احجز الآن
           </Link>
         </div>

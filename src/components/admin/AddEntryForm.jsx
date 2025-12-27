@@ -122,7 +122,7 @@ const AddEntryForm = ({ onSuccess }) => {
               disabled={loading}
             >
               <option value="pending">قيد الانتظار</option>
-              <option value="processing">قيد المعالجة</option>
+              <option value="in_embassy">في السفارة</option>
               <option value="ready">جاهز</option>
               <option value="rejected">مرفوض</option>
             </select>

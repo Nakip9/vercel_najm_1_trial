@@ -5,35 +5,35 @@ export const popularDestinations = [
         image: "/dubai.jpg",
         price: "تبدأ من 1500 ر.س",
         category: "تسوق وترفيه",
-        duration: "5 أيام"
+
     },
     {
         name: "لندن",
         image: "/london.jpeg",
         price: "تبدأ من 3500 ر.س",
         category: "تاريخ وثقافة",
-        duration: "7 أيام"
+
     },
     {
         name: "المالديف",
         image: "/beach.jpg",
         price: "تبدأ من 4500 ر.س",
         category: "استجمام",
-        duration: "6 أيام"
+
     },
     {
         name: "إسطنبول",
         image: "/istanbul.jpeg",
         price: "تبدأ من 2000 ر.س",
         category: "تاريخ وطبيعة",
-        duration: "6 أيام"
+
     },
     {
         name: "القاهرة",
         image: "/cairo.jpg",
         price: "تبدأ من 1800 ر.س",
         category: "تاريخ وحضارة",
-        duration: "5 أيام"
+
     }
 ];
 
@@ -49,7 +49,7 @@ export const allDestinations = [
         placesToVisit: ["برج خليفة", "نافورة دبي", "حي الفهيدي التاريخي", "برواز دبي"],
         startingPrice: "1500 ر.س",
         price: "1500 ر.س",
-        duration: "5 أيام"
+
     },
     {
         id: 2,
@@ -62,7 +62,7 @@ export const allDestinations = [
         placesToVisit: ["مسجد السلطان أحمد", "قصر توبكابي", "برج غلطة", "ميدان تقسيم"],
         startingPrice: "2000 ر.س",
         price: "2000 ر.س",
-        duration: "6 أيام"
+
     },
     {
         id: 3,
@@ -75,7 +75,7 @@ export const allDestinations = [
         placesToVisit: ["جزيرة ماليه", "جزيرة مافوشي", "منتجع أداران", "الشاطئ المضيء"],
         startingPrice: "4500 ر.س",
         price: "4500 ر.س",
-        duration: "6 أيام"
+
     },
     {
         id: 4,
@@ -88,7 +88,7 @@ export const allDestinations = [
         placesToVisit: ["عين لندن", "برج لندن", "هايد بارك", "جسر البرج"],
         startingPrice: "3500 ر.س",
         price: "3500 ر.س",
-        duration: "7 أيام"
+
     },
     {
         id: 5,
@@ -101,7 +101,7 @@ export const allDestinations = [
         placesToVisit: ["قوس النصر", "كاتدرائية نوتردام", "حي مونمارتر", "قصر فرساي"],
         startingPrice: "4000 ر.س",
         price: "4000 ر.س",
-        duration: "6 أيام"
+
     },
     {
         id: 6,
@@ -114,7 +114,7 @@ export const allDestinations = [
         placesToVisit: ["الكعبة المشرفة", "المسجد الحرام", "جبل النور", "غار حراء", "جبل عرفة"],
         startingPrice: "1000 ر.س",
         price: "1000 ر.س",
-        duration: "5 أيام"
+
     },
     {
         id: 7,
@@ -127,7 +127,7 @@ export const allDestinations = [
         placesToVisit: ["المسجد النبوي الشريف", "روضة الشريف", "جبل أحد", "مسجد قباء", "مقبرة البقيع"],
         startingPrice: "1000 ر.س",
         price: "1000 ر.س",
-        duration: "4 أيام"
+
     },
     {
         id: 8,
@@ -140,7 +140,7 @@ export const allDestinations = [
         placesToVisit: ["أهرامات الجيزة", "قلعة صلاح الدين", "شارع المعز", "برج القاهرة"],
         startingPrice: "1800 ر.س",
         price: "1800 ر.س",
-        duration: "5 أيام"
+
     },
     {
         id: 9,
@@ -153,7 +153,7 @@ export const allDestinations = [
         placesToVisit: ["حي الطريف", "برج المملكة", "وادي حنيفة", "منتزه الملك عبدالله"],
         startingPrice: "1200 ر.س",
         price: "1200 ر.س",
-        duration: "4 أيام"
+
     },
     {
         id: 10,
@@ -166,7 +166,7 @@ export const allDestinations = [
         placesToVisit: ["كاتدرائية الثالوث القدوس", "ميدان مسكل", "حديقة الوحدة", "متحف الإثنوجرافيا"],
         startingPrice: "2500 ر.س",
         price: "2500 ر.س",
-        duration: "5 أيام"
+
     },
     {
         id: 11,
@@ -179,7 +179,7 @@ export const allDestinations = [
         placesToVisit: ["قطب منار", "معبد اللوتس", "جامع مسجد", "حدائق لودهي"],
         startingPrice: "2800 ر.س",
         price: "2800 ر.س",
-        duration: "7 أيام"
+
     },
     {
         id: 12,
@@ -192,6 +192,6 @@ export const allDestinations = [
         placesToVisit: ["حديقة الطيور", "ميدان ميرديكا", "شارع العرب (بوكيت بينتانج)", "اكواريوم KLCC"],
         startingPrice: "3200 ر.س",
         price: "3200 ر.س",
-        duration: "8 أيام"
+
     }
 ];

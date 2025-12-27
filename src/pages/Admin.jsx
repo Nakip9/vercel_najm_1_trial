@@ -98,9 +98,9 @@ const Admin = () => {
             <div className="filter-group">
               <label htmlFor="status-filter">فرز حسب الحاله</label>
               <select id="status-filter" value={statusFilter} onChange={handleStatusFilter}>
-                <option value="all">جميع الحالات</option>
-                <option value="pending">قيد الانتظار</option>
-                <option value="processing">قيد المعالجة</option>
+                <option value="all">الكل</option>
+                <option value="pending">في الانتظار</option>
+                <option value="in_embassy">في السفارة</option>
                 <option value="ready">جاهز</option>
                 <option value="rejected">مرفوض</option>
               </select>
@@ -110,7 +110,7 @@ const Admin = () => {
           {error && (
             <div className="error-banner">
               {error}
-              <button onClick={handleRefresh}>خطاء</button>
+              <button onClick={handleRefresh}>إعادة المحاولة</button>
             </div>
           )}
 
@@ -157,4 +157,3 @@ const Admin = () => {
 };
 
 export default Admin;
-
