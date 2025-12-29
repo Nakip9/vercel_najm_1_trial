@@ -34,7 +34,17 @@ export default async function handler(req, res) {
 
   try {
     // Parse request body
-    const { passport_number, status, admin_notes, first_name, last_name } = req.body;
+    const { 
+      passport_number, 
+      status, 
+      admin_notes, 
+      first_name, 
+      last_name,
+      visa_type,
+      passport_received_date,
+      embassy_submit_date,
+      expected_exit_date
+    } = req.body;
 
     // Validation
     if (!passport_number || passport_number.trim() === '') {
@@ -50,11 +60,20 @@ export default async function handler(req, res) {
       });
     }
 
+    // Validate visa type if provided
+    const validVisaTypes = ['زيارة', 'عمل', 'عمرة', 'أخرى'];
+    if (visa_type && !validVisaTypes.includes(visa_type)) {
+      return res.status(400).json({
+        error: 'Invalid visa type. Must be: زيارة, عمل, عمرة, or أخرى',
+      });
+    }
+
     // Sanitize input
     const sanitizedPassport = passport_number.trim().toUpperCase();
     const sanitizedNotes = admin_notes ? admin_notes.trim() : null;
     const sanitizedFirstName = first_name ? first_name.trim() : null;
     const sanitizedLastName = last_name ? last_name.trim() : null;
+    const sanitizedVisaType = visa_type ? visa_type.trim() : null;
 
     // Insert into database
     const { data, error } = await supabase
@@ -65,6 +84,10 @@ export default async function handler(req, res) {
         admin_notes: sanitizedNotes,
         first_name: sanitizedFirstName,
         last_name: sanitizedLastName,
+        visa_type: sanitizedVisaType,
+        passport_received_date: passport_received_date || null,
+        embassy_submit_date: embassy_submit_date || null,
+        expected_exit_date: expected_exit_date || null,
       })
       .select()
       .single();
@@ -91,7 +114,12 @@ export default async function handler(req, res) {
         admin_notes: data.admin_notes,
         first_name: data.first_name,
         last_name: data.last_name,
+        visa_type: data.visa_type,
+        passport_received_date: data.passport_received_date,
+        embassy_submit_date: data.embassy_submit_date,
+        expected_exit_date: data.expected_exit_date,
         created_at: data.created_at,
+        updated_at: data.updated_at,
       },
     });
   } catch (error) {

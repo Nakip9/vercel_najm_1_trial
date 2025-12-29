@@ -67,6 +67,7 @@ const PassportTable = ({ entries, onRefresh, onDelete }) => {
             <tr>
               <th>رقم الجواز</th>
               <th>الاسم الكامل</th>
+              <th>نوع التأشيرة</th>
               <th>الحالة</th>
               <th>تاريخ الإنشاء</th>
               <th>آخر تحديث</th>
@@ -83,6 +84,7 @@ const PassportTable = ({ entries, onRefresh, onDelete }) => {
                 <td>
                   {[entry.first_name, entry.last_name].filter(Boolean).join(' ') || '—'}
                 </td>
+                <td>{entry.visa_type || '—'}</td>
                 <td>{getStatusBadge(entry.status)}</td>
                 <td>{new Date(entry.created_at).toLocaleDateString()}</td>
                 <td>{new Date(entry.updated_at).toLocaleDateString()}</td>

@@ -34,7 +34,17 @@ export default async function handler(req, res) {
 
   try {
     // Parse request body
-    const { id, status, admin_notes, first_name, last_name } = req.body;
+    const { 
+      id, 
+      status, 
+      admin_notes, 
+      first_name, 
+      last_name,
+      visa_type,
+      passport_received_date,
+      embassy_submit_date,
+      expected_exit_date
+    } = req.body;
 
     // Validation
     if (!id) {
@@ -45,6 +55,14 @@ export default async function handler(req, res) {
     if (status && !validStatuses.includes(status)) {
       return res.status(400).json({
         error: 'Invalid status. Must be: pending, in_embassy, ready, or rejected',
+      });
+    }
+
+    // Validate visa type if provided
+    const validVisaTypes = ['زيارة', 'عمل', 'عمرة', 'أخرى'];
+    if (visa_type && !validVisaTypes.includes(visa_type)) {
+      return res.status(400).json({
+        error: 'Invalid visa type. Must be: زيارة, عمل, عمرة, or أخرى',
       });
     }
 
@@ -67,6 +85,22 @@ export default async function handler(req, res) {
 
     if (last_name !== undefined) {
       updateData.last_name = last_name ? last_name.trim() : null;
+    }
+
+    if (visa_type !== undefined) {
+      updateData.visa_type = visa_type ? visa_type.trim() : null;
+    }
+
+    if (passport_received_date !== undefined) {
+      updateData.passport_received_date = passport_received_date || null;
+    }
+
+    if (embassy_submit_date !== undefined) {
+      updateData.embassy_submit_date = embassy_submit_date || null;
+    }
+
+    if (expected_exit_date !== undefined) {
+      updateData.expected_exit_date = expected_exit_date || null;
     }
 
     // Update database
@@ -96,6 +130,11 @@ export default async function handler(req, res) {
         admin_notes: data.admin_notes,
         first_name: data.first_name,
         last_name: data.last_name,
+        visa_type: data.visa_type,
+        passport_received_date: data.passport_received_date,
+        embassy_submit_date: data.embassy_submit_date,
+        expected_exit_date: data.expected_exit_date,
+        created_at: data.created_at,
         updated_at: data.updated_at,
       },
     });

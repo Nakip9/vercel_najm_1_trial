@@ -7,6 +7,10 @@ const EditEntryModal = ({ entry, onClose, onSuccess }) => {
     last_name: entry.last_name || '',
     status: entry.status,
     admin_notes: entry.admin_notes || '',
+    visa_type: entry.visa_type || '',
+    passport_received_date: entry.passport_received_date || '',
+    embassy_submit_date: entry.embassy_submit_date || '',
+    expected_exit_date: entry.expected_exit_date || '',
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -37,6 +41,10 @@ const EditEntryModal = ({ entry, onClose, onSuccess }) => {
           last_name: formData.last_name.trim(),
           status: formData.status,
           admin_notes: formData.admin_notes.trim() || null,
+          visa_type: formData.visa_type || null,
+          passport_received_date: formData.passport_received_date || null,
+          embassy_submit_date: formData.embassy_submit_date || null,
+          expected_exit_date: formData.expected_exit_date || null,
         }),
       });
 
@@ -104,6 +112,74 @@ const EditEntryModal = ({ entry, onClose, onSuccess }) => {
                   value={formData.last_name}
                   onChange={(e) => setFormData({ ...formData, last_name: e.target.value })}
                   placeholder="اسم العائلة"
+                  disabled={loading}
+                />
+              </div>
+            </div>
+
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="edit-visa-type">نوع التأشيرة</label>
+                <select
+                  id="edit-visa-type"
+                  value={formData.visa_type}
+                  onChange={(e) =>
+                    setFormData({ ...formData, visa_type: e.target.value })
+                  }
+                  disabled={loading}
+                >
+                  <option value="">اختر النوع</option>
+                  <option value="زيارة">زيارة</option>
+                  <option value="عمل">عمل</option>
+                  <option value="عمرة">عمرة</option>
+                  <option value="أخرى">أخرى</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label htmlFor="edit-passport-received">تاريخ استلام الجواز</label>
+                <input
+                  type="date"
+                  id="edit-passport-received"
+                  value={formData.passport_received_date}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      passport_received_date: e.target.value,
+                    })
+                  }
+                  disabled={loading}
+                />
+              </div>
+            </div>
+
+            <div className="form-row">
+              <div className="form-group">
+                <label htmlFor="edit-embassy-submit">تاريخ التقديم للسفارة</label>
+                <input
+                  type="date"
+                  id="edit-embassy-submit"
+                  value={formData.embassy_submit_date}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      embassy_submit_date: e.target.value,
+                    })
+                  }
+                  disabled={loading}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="edit-expected-exit">تاريخ الخروج المتوقع</label>
+                <input
+                  type="date"
+                  id="edit-expected-exit"
+                  value={formData.expected_exit_date}
+                  onChange={(e) =>
+                    setFormData({
+                      ...formData,
+                      expected_exit_date: e.target.value,
+                    })
+                  }
                   disabled={loading}
                 />
               </div>

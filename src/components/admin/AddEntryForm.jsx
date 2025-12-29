@@ -8,6 +8,10 @@ const AddEntryForm = ({ onSuccess }) => {
     last_name: '',
     status: 'pending',
     admin_notes: '',
+    visa_type: '',
+    passport_received_date: '',
+    embassy_submit_date: '',
+    expected_exit_date: '',
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -35,6 +39,10 @@ const AddEntryForm = ({ onSuccess }) => {
           last_name: formData.last_name.trim(),
           status: formData.status,
           admin_notes: formData.admin_notes.trim() || null,
+          visa_type: formData.visa_type || null,
+          passport_received_date: formData.passport_received_date || null,
+          embassy_submit_date: formData.embassy_submit_date || null,
+          expected_exit_date: formData.expected_exit_date || null,
         }),
       });
 
@@ -52,6 +60,10 @@ const AddEntryForm = ({ onSuccess }) => {
         last_name: '',
         status: 'pending',
         admin_notes: '',
+        visa_type: '',
+        passport_received_date: '',
+        embassy_submit_date: '',
+        expected_exit_date: '',
       });
 
       alert('تم إضافة المدخل بنجاح!');
@@ -126,6 +138,63 @@ const AddEntryForm = ({ onSuccess }) => {
               <option value="ready">جاهز</option>
               <option value="rejected">مرفوض</option>
             </select>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="visa-type">نوع التأشيرة</label>
+            <select
+              id="visa-type"
+              value={formData.visa_type}
+              onChange={(e) =>
+                setFormData({ ...formData, visa_type: e.target.value })
+              }
+              disabled={loading}
+            >
+              <option value="">اختر النوع</option>
+              <option value="زيارة">زيارة</option>
+              <option value="عمل">عمل</option>
+              <option value="عمرة">عمرة</option>
+              <option value="أخرى">أخرى</option>
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="passport-received-date">تاريخ استلام الجواز</label>
+            <input
+              type="date"
+              id="passport-received-date"
+              value={formData.passport_received_date}
+              onChange={(e) =>
+                setFormData({ ...formData, passport_received_date: e.target.value })
+              }
+              disabled={loading}
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="embassy-submit-date">تاريخ التقديم للسفارة</label>
+            <input
+              type="date"
+              id="embassy-submit-date"
+              value={formData.embassy_submit_date}
+              onChange={(e) =>
+                setFormData({ ...formData, embassy_submit_date: e.target.value })
+              }
+              disabled={loading}
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="expected-exit-date">تاريخ الخروج المتوقع</label>
+            <input
+              type="date"
+              id="expected-exit-date"
+              value={formData.expected_exit_date}
+              onChange={(e) =>
+                setFormData({ ...formData, expected_exit_date: e.target.value })
+              }
+              disabled={loading}
+            />
           </div>
         </div>
 
