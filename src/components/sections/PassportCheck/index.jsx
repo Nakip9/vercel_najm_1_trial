@@ -73,6 +73,10 @@ const PassportCheck = () => {
           admin_notes: data.admin_notes,
           first_name: data.first_name,
           last_name: data.last_name,
+          visa_type: data.visa_type,
+          passport_received_date: data.passport_received_date,
+          embassy_submit_date: data.embassy_submit_date,
+          expected_exit_date: data.expected_exit_date,
         });
       }
     } catch (err) {
