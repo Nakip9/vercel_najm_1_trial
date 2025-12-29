@@ -46,7 +46,7 @@ export default async function handler(req, res) {
     // Query database
     const { data, error } = await supabase
       .from('visa_status')
-      .select('id, passport_number, status, created_at, updated_at, admin_notes, first_name, last_name')
+      .select('id, passport_number, status, created_at, updated_at, admin_notes, first_name, last_name, visa_type, passport_received_date, embassy_submit_date, expected_exit_date')
       .eq('passport_number', sanitizedPassport)
       .single();
 
@@ -73,6 +73,10 @@ export default async function handler(req, res) {
       admin_notes: data.admin_notes || null,
       first_name: data.first_name || null,
       last_name: data.last_name || null,
+      visa_type: data.visa_type || null,
+      passport_received_date: data.passport_received_date || null,
+      embassy_submit_date: data.embassy_submit_date || null,
+      expected_exit_date: data.expected_exit_date || null,
     });
   } catch (error) {
     console.error('Unexpected error:', error);
