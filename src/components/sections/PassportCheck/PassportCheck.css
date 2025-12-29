@@ -277,3 +277,167 @@
   }
 }
 
+/* Timeline / Schedule Styles - Added */
+.timeline-container {
+  margin-top: var(--spacing-xl);
+  position: relative;
+  padding-right: var(--spacing-lg); /* RTL adjustment */
+}
+
+/* Vertical Line */
+.timeline-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 15px; /* RTL adjustment */
+  height: 100%;
+  width: 2px;
+  background: var(--bg-tertiary);
+  z-index: 0;
+}
+
+.timeline-step {
+  position: relative;
+  margin-bottom: var(--spacing-xl);
+  padding-right: var(--spacing-2xl); /* RTL adjustment: space for dot */
+  z-index: 1;
+}
+
+.timeline-step:last-child {
+  margin-bottom: 0;
+}
+
+/* Timeline Dot */
+.timeline-marker {
+  position: absolute;
+  right: 0; /* RTL adjustment */
+  top: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--bg-primary);
+  border: 2px solid var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-sm);
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+/* Completed Step */
+.timeline-step.completed .timeline-marker {
+  background: var(--secondary-teal);
+  border-color: var(--secondary-teal);
+  color: white;
+  box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.2);
+}
+
+/* Active Step */
+.timeline-step.active .timeline-marker {
+  background: white;
+  border-color: var(--accent-amber);
+  color: var(--accent-amber);
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.2);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(245, 158, 11, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
+  }
+}
+
+.timeline-content {
+  background: var(--bg-primary);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--bg-tertiary);
+  transition: all 0.3s ease;
+}
+
+.timeline-step.active .timeline-content {
+  border-color: var(--accent-amber);
+  box-shadow: var(--shadow-md);
+  background: linear-gradient(to left, rgba(245, 158, 11, 0.05), transparent);
+}
+
+.timeline-step.completed .timeline-content {
+  border-color: var(--secondary-teal);
+  background: linear-gradient(to left, rgba(20, 184, 166, 0.05), transparent);
+}
+
+.timeline-date {
+  font-size: var(--font-xs);
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-xs);
+  display: block;
+  font-family: monospace; /* For better date alignment */
+}
+
+.timeline-title {
+  font-size: var(--font-base);
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.timeline-desc {
+  font-size: var(--font-sm);
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* New Header Styles */
+.status-header-premium {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: var(--spacing-xl);
+  text-align: center;
+  border-bottom: 1px solid var(--bg-tertiary);
+  padding-bottom: var(--spacing-lg);
+}
+
+.premium-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  padding: 8px 16px;
+  background: rgba(8, 145, 178, 0.1); /* Cyan tint */
+  color: var(--primary-cyan);
+  border-radius: var(--radius-full);
+  font-size: var(--font-sm);
+  font-weight: 700;
+  margin-top: var(--spacing-sm);
+  border: 1px solid rgba(8, 145, 178, 0.2);
+}
+
+.visa-type-container {
+  margin-top: var(--spacing-md);
+}
+
+.visa-type-label {
+  font-size: var(--font-xs);
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.visa-type-value {
+  font-size: var(--font-lg);
+  font-weight: 800;
+  color: var(
+    --primary-gold
+  ); /* Assuming grid has a gold variable, else use #F59E0B */
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
