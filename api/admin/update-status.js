@@ -51,10 +51,10 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: 'Entry ID is required' });
     }
 
-    const validStatuses = ['pending', 'in_embassy', 'ready', 'rejected'];
+    const validStatuses = ['pending', 'in_embassy', 'ready', 'in_aden'];
     if (status && !validStatuses.includes(status)) {
       return res.status(400).json({
-        error: 'Invalid status. Must be: pending, in_embassy, ready, or rejected',
+        error: 'Invalid status. Must be: pending, in_embassy, ready, or in_aden',
       });
     }
 

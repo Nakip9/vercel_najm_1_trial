@@ -53,7 +53,7 @@ export default async function handler(req, res) {
       .order('updated_at', { ascending: false });
 
     // Apply status filter
-    if (statusFilter && ['pending', 'in_embassy', 'ready', 'rejected'].includes(statusFilter)) {
+    if (statusFilter && ['pending', 'in_embassy', 'ready', 'in_aden'].includes(statusFilter)) {
       query = query.eq('status', statusFilter);
     }
 

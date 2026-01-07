@@ -197,7 +197,7 @@ const EditEntryModal = ({ entry, onClose, onSuccess }) => {
                 <option value="pending">قيد الانتظار</option>
                 <option value="in_embassy">في السفارة</option>
                 <option value="ready">جاهز</option>
-                <option value="rejected">مرفوض</option>
+                <option value="in_aden">في عدن</option>
               </select>
             </div>
 
