@@ -11,6 +11,25 @@ const Admin = () => {
   const [statusFilter, setStatusFilter] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
   const [pagination, setPagination] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [passwordInput, setPasswordInput] = useState('');
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    if (passwordInput === 'Najm123123') {
+      setIsAuthenticated(true);
+      // Optional: Save to localStorage for persistence
+      // localStorage.setItem('adminAuth', 'true');
+    } else {
+      alert('كلمة المرور غير صحيحة');
+    }
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    setPasswordInput('');
+    // localStorage.removeItem('adminAuth');
+  };
 
   const fetchEntries = async (page = 1, search = '', status = 'all') => {
     setLoading(true);
@@ -50,8 +69,10 @@ const Admin = () => {
   };
 
   useEffect(() => {
-    fetchEntries(currentPage, searchTerm, statusFilter);
-  }, [currentPage, searchTerm, statusFilter]);
+    if (isAuthenticated) {
+      fetchEntries(currentPage, searchTerm, statusFilter);
+    }
+  }, [currentPage, searchTerm, statusFilter, isAuthenticated]);
 
   const handleRefresh = () => {
     fetchEntries(currentPage, searchTerm, statusFilter);
@@ -72,12 +93,81 @@ const Admin = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  if (!isAuthenticated) {
+    return (
+      <div className="admin-page">
+        <div className="container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '60vh' }}>
+          <div className="login-card" style={{ 
+            backgroundColor: 'white', 
+            padding: '2rem', 
+            borderRadius: '12px', 
+            boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
+            width: '100%',
+            maxWidth: '400px',
+            textAlign: 'center'
+          }}>
+            <h2 style={{ marginBottom: '1.5rem', color: '#1a1a1a' }}>تسجيل دخول المسؤول</h2>
+            <form onSubmit={handleLogin}>
+              <div style={{ marginBottom: '1rem' }}>
+                <input
+                  type="password"
+                  value={passwordInput}
+                  onChange={(e) => setPasswordInput(e.target.value)}
+                  placeholder="كلمة المرور"
+                  style={{
+                    width: '100%',
+                    padding: '0.75rem',
+                    borderRadius: '6px',
+                    border: '1px solid #ddd',
+                    fontSize: '1rem'
+                  }}
+                  autoFocus
+                />
+              </div>
+              <button 
+                type="submit"
+                style={{
+                  width: '100%',
+                  padding: '0.75rem',
+                  backgroundColor: '#004aad',
+                  color: 'white',
+                  border: 'none',
+                  borderRadius: '6px',
+                  fontSize: '1rem',
+                  cursor: 'pointer',
+                  fontWeight: '600'
+                }}
+              >
+                دخول
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="admin-page">
       <div className="container">
-        <div className="admin-header">
-          <h1>لوحة الإدارة - إدارة حالة الفيزا</h1>
-          <p>إدارة مدخلات جوازات السفر وحالات الفيزا</p>
+        <div className="admin-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div>
+            <h1>لوحة الإدارة - إدارة حالة الفيزا</h1>
+            <p>إدارة مدخلات جوازات السفر وحالات الفيزا</p>
+          </div>
+          <button 
+            onClick={handleLogout}
+            style={{
+              padding: '0.5rem 1rem',
+              backgroundColor: '#dc3545',
+              color: 'white',
+              border: 'none',
+              borderRadius: '6px',
+              cursor: 'pointer'
+            }}
+          >
+            تسجيل خروج
+          </button>
         </div>
 
         <div className="admin-content">
@@ -102,7 +192,7 @@ const Admin = () => {
                 <option value="pending">في الانتظار</option>
                 <option value="in_embassy">في السفارة</option>
                 <option value="ready">جاهز</option>
-                <option value="rejected">مرفوض</option>
+                <option value="in_aden">في عدن</option>
               </select>
             </div>
           </div>

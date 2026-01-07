@@ -44,7 +44,7 @@ const PassportTable = ({ entries, onRefresh, onDelete }) => {
       ready: { label: 'جاهز', className: 'badge-success' },
       in_embassy: { label: 'في السفارة', className: 'badge-warning' },
       pending: { label: 'قيد الانتظار', className: 'badge-info' },
-      rejected: { label: 'مرفوض', className: 'badge-error' },
+      in_aden: { label: 'في عدن', className: 'badge-info' },
     };
 
     const badge = badges[status] || badges.pending;

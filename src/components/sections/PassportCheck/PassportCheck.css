@@ -1,42 +1,57 @@
+/* PassportCheck.css */
+
+/* --- Main Section Wrapper --- */
 .passport-check-section {
   padding: var(--spacing-2xl) 0;
   background: var(--bg-secondary);
   direction: rtl;
   text-align: right;
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .passport-check-wrapper {
+  width: 100%;
   max-width: 800px;
   margin: 0 auto;
+  padding: 0 var(--spacing-md);
 }
 
+/* --- Headers --- */
 .passport-check-header {
   text-align: center;
-  margin-bottom: var(--spacing-2xl);
-  direction: rtl;
+  margin-bottom: var(--spacing-xl);
 }
 
 .passport-check-header .section-title {
+  font-family: var(--font-heading);
   font-size: var(--font-3xl);
   font-weight: 800;
-  color: var(--text-primary);
-  margin-bottom: var(--spacing-md);
+  color: var(--primary-blue);
+  margin-bottom: var(--spacing-xs);
 }
 
 .passport-check-header .section-subtitle {
+  font-family: var(--font-body);
   font-size: var(--font-lg);
   color: var(--text-secondary);
   max-width: 600px;
   margin: 0 auto;
 }
 
+/* --- Main Card --- */
 .passport-check-card {
   background: var(--bg-primary);
   border-radius: var(--radius-xl);
   padding: var(--spacing-2xl);
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-xl);
+  border: 1px solid rgba(0, 75, 135, 0.05); /* Subtle blue border */
+  transition: transform var(--transition-base);
 }
 
+/* --- Form Styles --- */
 .passport-check-form {
   display: flex;
   flex-direction: column;
@@ -46,36 +61,34 @@
 .form-group {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-xs);
 }
 
 .form-label {
+  font-family: var(--font-heading);
   font-size: var(--font-base);
-  font-weight: 600;
-  color: var(--text-primary);
+  font-weight: 700;
+  color: var(--primary-dark);
 }
 
 .form-input {
   width: 100%;
-  padding: var(--spacing-md) var(--spacing-lg);
+  min-height: 56px; /* Touch friendly */
+  padding: 0 var(--spacing-lg);
+  font-family: var(--font-body);
   font-size: var(--font-base);
-  border: 2px solid var(--bg-tertiary);
+  background-color: var(--bg-secondary);
+  border: 2px solid transparent;
   border-radius: var(--radius-md);
-  background: var(--bg-primary);
   color: var(--text-primary);
-  transition: all 0.3s ease;
+  transition: all var(--transition-fast);
 }
 
 .form-input:focus {
   outline: none;
-  border-color: var(--primary-cyan);
-  box-shadow: 0 0 0 3px rgba(8, 145, 178, 0.1);
-}
-
-.form-input:disabled {
-  background: var(--bg-tertiary);
-  cursor: not-allowed;
-  opacity: 0.6;
+  background-color: var(--bg-primary);
+  border-color: var(--primary-blue);
+  box-shadow: 0 0 0 4px rgba(0, 75, 135, 0.1);
 }
 
 .form-input::placeholder {
@@ -83,214 +96,155 @@
 }
 
 .error-message {
-  padding: var(--spacing-md);
-  background: rgba(236, 72, 153, 0.1);
+  padding: var(--spacing-sm) var(--spacing-md);
+  background: rgba(251, 113, 133, 0.1); /* Coral tint */
   border: 1px solid var(--accent-coral);
   border-radius: var(--radius-md);
-  color: var(--accent-coral);
+  color: #9f1239; /* Darker red for text */
   font-size: var(--font-sm);
-  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
+/* --- Check Button --- */
 .btn-check {
-  padding: var(--spacing-md) var(--spacing-xl);
-  font-size: var(--font-base);
-  font-weight: 600;
-  color: white;
+  width: 100%;
+  min-height: 56px;
   background: var(--gradient-ocean);
+  color: white;
   border: none;
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-full);
+  font-family: var(--font-heading);
+  font-size: var(--font-lg);
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-lg);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: var(--spacing-sm);
-  box-shadow: var(--shadow-md);
 }
 
 .btn-check:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: var(--shadow-lg);
-}
-
-.btn-check:active:not(:disabled) {
-  transform: translateY(0);
+  box-shadow: var(--shadow-glow);
 }
 
 .btn-check:disabled {
-  opacity: 0.6;
+  opacity: 0.7;
   cursor: not-allowed;
+  filter: grayscale(1);
 }
 
 .spinner {
-  width: 16px;
-  height: 16px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
   border-top-color: white;
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
 
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}
+@keyframes spin { to { transform: rotate(360deg); } }
 
+/* --- Status Result Container --- */
 .status-result {
   margin-top: var(--spacing-2xl);
-  animation: fadeIn 0.3s ease;
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--bg-tertiary);
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
-.status-card {
-  padding: var(--spacing-2xl);
-  border-radius: var(--radius-xl);
-  border: 2px solid;
-  text-align: center;
-}
-
-.status-card.found {
-  background: var(--bg-primary);
-}
-
+/* --- Not Found State --- */
 .status-card.not-found {
-  background: var(--bg-secondary);
-  border-color: var(--text-muted);
-}
-
-.status-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--spacing-md);
-  margin-bottom: var(--spacing-lg);
-}
-
-.status-icon {
-  font-size: 48px;
-  margin-bottom: var(--spacing-sm);
+  text-align: center;
+  padding: var(--spacing-xl) 0;
 }
 
 .status-icon-large {
-  font-size: 64px;
+  font-size: 3.5rem;
   margin-bottom: var(--spacing-md);
+  display: block;
 }
 
-.status-info {
+/* --- Found State & Premium Header --- */
+.status-header-premium {
   text-align: center;
+  margin-bottom: var(--spacing-xl);
 }
 
 .status-title {
+  font-family: var(--font-heading);
   font-size: var(--font-2xl);
   font-weight: 800;
-  margin-bottom: var(--spacing-sm);
-}
-
-.status-passport {
-  font-size: var(--font-base);
-  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   margin-bottom: var(--spacing-xs);
 }
 
-.status-passport strong {
-  color: var(--text-primary);
-  font-weight: 700;
+.status-name {
+  font-size: var(--font-lg);
+  color: var(--text-secondary);
 }
 
-.status-date {
-  font-size: var(--font-sm);
+.premium-badge {
+  display: inline-block;
+  background: var(--bg-secondary);
+  border: 1px solid var(--bg-tertiary);
+  color: var(--primary-blue);
+  font-family: monospace;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-full);
+  margin-top: var(--spacing-sm);
+}
+
+.visa-type-container {
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-sm);
+  background: rgba(245, 158, 11, 0.1); /* Amber tint */
+  border-radius: var(--radius-md);
+  display: inline-block;
+}
+
+.visa-type-label {
+  font-size: var(--font-xs);
   color: var(--text-muted);
+  display: block;
 }
 
-.status-body {
-  margin-bottom: var(--spacing-lg);
+.visa-type-value {
+  color: #b45309; /* Dark Amber */
+  font-weight: 800;
+  font-size: var(--font-lg);
 }
 
-.status-message {
-  font-size: var(--font-base);
-  color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: var(--spacing-md);
-}
-
-.admin-notes {
-  margin-top: var(--spacing-lg);
-  padding: var(--spacing-md);
-  background: rgba(255, 255, 255, 0.5);
-  border-radius: var(--radius-md);
-  border-left: 3px solid var(--primary-cyan);
-  text-align: left;
-  font-size: var(--font-sm);
-  color: var(--text-secondary);
-}
-
-.admin-notes strong {
-  color: var(--text-primary);
-  font-weight: 600;
-}
-
-.btn-reset {
-  padding: var(--spacing-sm) var(--spacing-lg);
-  font-size: var(--font-sm);
-  font-weight: 600;
-  color: var(--primary-cyan);
-  background: transparent;
-  border: 2px solid var(--primary-cyan);
-  border-radius: var(--radius-md);
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.btn-reset:hover {
-  background: var(--primary-cyan);
-  color: white;
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .passport-check-card {
-    padding: var(--spacing-lg);
-  }
-
-  .passport-check-header .section-title {
-    font-size: var(--font-2xl);
-  }
-
-  .status-icon-large {
-    font-size: 48px;
-  }
-
-  .status-title {
-    font-size: var(--font-xl);
-  }
-}
-
-/* Timeline / Schedule Styles - Added */
+/* --- The Schedule (Timeline) - Mobile Optimized --- */
 .timeline-container {
-  margin-top: var(--spacing-xl);
   position: relative;
-  padding-right: var(--spacing-lg); /* RTL adjustment */
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-right: 2rem; /* Space for the line/markers on right */
+  margin: var(--spacing-xl) 0;
 }
 
 /* Vertical Line */
 .timeline-container::before {
-  content: "";
+  content: '';
   position: absolute;
-  top: 0;
-  right: 15px; /* RTL adjustment */
-  height: 100%;
+  top: 1rem;
+  bottom: 0;
+  right: 0.65rem; /* Center line through markers */
   width: 2px;
   background: var(--bg-tertiary);
   z-index: 0;
@@ -298,31 +252,36 @@
 
 .timeline-step {
   position: relative;
-  margin-bottom: var(--spacing-xl);
-  padding-right: var(--spacing-2xl); /* RTL adjustment: space for dot */
   z-index: 1;
 }
 
-.timeline-step:last-child {
-  margin-bottom: 0;
-}
-
-/* Timeline Dot */
+/* Markers */
 .timeline-marker {
   position: absolute;
-  right: 0; /* RTL adjustment */
+  right: -2rem; /* Pull marker to the line */
   top: 0;
-  width: 32px;
-  height: 32px;
+  width: 1.5rem; /* 24px */
+  height: 1.5rem;
   border-radius: 50%;
   background: var(--bg-primary);
-  border: 2px solid var(--text-muted);
+  border: 2px solid var(--bg-tertiary);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: var(--font-sm);
-  z-index: 2;
-  transition: all 0.3s ease;
+  font-size: 0.8rem;
+  transition: all var(--transition-base);
+}
+
+/* Active Step (Processing) */
+.timeline-step.active .timeline-marker {
+  background: var(--primary-blue);
+  border-color: var(--primary-blue);
+  color: white;
+  box-shadow: 0 0 0 4px rgba(0, 75, 135, 0.2);
+}
+
+.timeline-step.active .timeline-title {
+  color: var(--primary-blue);
 }
 
 /* Completed Step */
@@ -330,114 +289,106 @@
   background: var(--secondary-teal);
   border-color: var(--secondary-teal);
   color: white;
-  box-shadow: 0 0 0 4px rgba(20, 184, 166, 0.2);
-}
-
-/* Active Step */
-.timeline-step.active .timeline-marker {
-  background: white;
-  border-color: var(--accent-amber);
-  color: var(--accent-amber);
-  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.2);
-  animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4);
-  }
-  70% {
-    box-shadow: 0 0 0 10px rgba(245, 158, 11, 0);
-  }
-  100% {
-    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
-  }
 }
 
 .timeline-content {
-  background: var(--bg-primary);
+  background: var(--bg-secondary);
   padding: var(--spacing-md);
   border-radius: var(--radius-md);
-  border: 1px solid var(--bg-tertiary);
-  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  transition: all var(--transition-base);
 }
 
 .timeline-step.active .timeline-content {
-  border-color: var(--accent-amber);
+  background: white;
+  border-color: rgba(0, 75, 135, 0.1);
   box-shadow: var(--shadow-md);
-  background: linear-gradient(to left, rgba(245, 158, 11, 0.05), transparent);
-}
-
-.timeline-step.completed .timeline-content {
-  border-color: var(--secondary-teal);
-  background: linear-gradient(to left, rgba(20, 184, 166, 0.05), transparent);
+  transform: translateX(-5px); /* Gentle slide left */
 }
 
 .timeline-date {
   font-size: var(--font-xs);
-  color: var(--text-secondary);
-  margin-bottom: var(--spacing-xs);
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
   display: block;
-  font-family: monospace; /* For better date alignment */
 }
 
 .timeline-title {
+  margin: 0;
   font-size: var(--font-base);
   font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: var(--spacing-xs);
 }
 
 .timeline-desc {
   font-size: var(--font-sm);
-  color: var(--text-muted);
-  line-height: 1.4;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
 }
 
-/* New Header Styles */
-.status-header-premium {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: var(--spacing-xl);
-  text-align: center;
-  border-bottom: 1px solid var(--bg-tertiary);
-  padding-bottom: var(--spacing-lg);
+/* --- Footer Actions --- */
+.status-message {
+  background: rgba(13, 148, 136, 0.1); /* Teal tint */
+  color: #115e59;
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-md);
+  line-height: 1.6;
 }
 
-.premium-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--spacing-xs);
-  padding: 8px 16px;
-  background: rgba(8, 145, 178, 0.1); /* Cyan tint */
-  color: var(--primary-cyan);
-  border-radius: var(--radius-full);
+.admin-notes {
+  background: #fff7ed;
+  border: 1px solid #ffedd5;
+  color: #9a3412;
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-lg);
   font-size: var(--font-sm);
-  font-weight: 700;
-  margin-top: var(--spacing-sm);
-  border: 1px solid rgba(8, 145, 178, 0.2);
 }
 
-.visa-type-container {
-  margin-top: var(--spacing-md);
+.btn-reset {
+  width: 100%;
+  padding: var(--spacing-md);
+  background: transparent;
+  border: 2px solid var(--bg-tertiary);
+  color: var(--text-secondary);
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
 }
 
-.visa-type-label {
-  font-size: var(--font-xs);
-  color: var(--text-muted);
-  display: block;
-  margin-bottom: 4px;
+.btn-reset:hover {
+  border-color: var(--primary-blue);
+  color: var(--primary-blue);
+  background: rgba(0, 75, 135, 0.05);
 }
 
-.visa-type-value {
-  font-size: var(--font-lg);
-  font-weight: 800;
-  color: var(
-    --primary-gold
-  ); /* Assuming grid has a gold variable, else use #F59E0B */
-  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+  .passport-check-section {
+    padding: var(--spacing-lg) 0;
+    align-items: flex-start; /* Better for mobile scrolling */
+  }
+
+  .passport-check-card {
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+  }
+
+  .status-title {
+    font-size: var(--font-xl);
+  }
+  
+  .timeline-content {
+    padding: var(--spacing-sm);
+  }
+}
+@media (max-width: 480px) {
+  .passport-check-section { padding: var(--spacing-md) 0; }
+  .passport-check-card { padding: var(--spacing-md); }
+  .status-title { font-size: var(--font-lg); }
+  .timeline-step { flex-direction: column; align-items: flex-start; }
+  .timeline-marker { right: auto; left: -1rem; }
+  .timeline-content { padding: var(--spacing-xs); }
 }

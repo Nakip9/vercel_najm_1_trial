@@ -133,10 +133,10 @@ const AddEntryForm = ({ onSuccess }) => {
               required
               disabled={loading}
             >
-              <option value="pending">قيد الانتظار</option>
+              <option value="pending"> تم الاستلام </option>
               <option value="in_embassy">في السفارة</option>
               <option value="ready">جاهز</option>
-              <option value="rejected">مرفوض</option>
+              <option value="in_aden">في عدن</option>
             </select>
           </div>
 
