@@ -8,11 +8,7 @@ import './Contact.css';
 const Contact = () => {
     // Contact methods for floating icons
     const handleMapClick = (e) => {
-        e.preventDefault();
-        const mapSection = document.querySelector('.contact-map-wrapper');
-        if (mapSection) {
-            mapSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
+        // We remove preventDefault so the link actually opens in a new tab
     };
 
     const contactMethods = [
@@ -21,7 +17,8 @@ const Contact = () => {
         { 
             icon: <FiMapPin />, 
             label: 'موقعنا', 
-            method: 'https://maps.google.com/?q=صنعاء+شارع+القدس+مقابل+السفارة+السعودية', 
+            // This link opens the Google Maps App/Website directly when clicked
+            method: 'https://www.google.com/maps/search/?api=1&query=15.336174,44.204229', 
             onClick: handleMapClick 
         }
     ];
@@ -52,7 +49,7 @@ const Contact = () => {
                         <span>زورنا في صنعاء</span>
                     </motion.div>
 
-                    {/* Main Title with Animated Underline */}
+                    {/* Main Title */}
                     <div className="contact-title-wrapper">
                         <motion.h1
                             initial={{ opacity: 0, y: 30 }}
@@ -83,7 +80,6 @@ const Contact = () => {
                                 key={index}
                                 href={method.method}
                                 className="contact-method-icon"
-                                onClick={method.onClick}
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.8 + index * 0.1 }}
@@ -199,15 +195,23 @@ const Contact = () => {
                     >
                         <h2 className="contact-title">موقعنا على الخريطة</h2>
                         <div className="map-container">
+                            {/* FIXED MAP IFRAME:
+                                Using the legacy 'maps?q=' format.
+                                q = coordinates + (Name in parenthesis)
+                                z = zoom level (15 is good for streets)
+                                output = embed (essential for iframes)
+                            */}
                             <iframe
-                            src="https://maps.google.com/maps?q=Sana'a+Al+Quds+Street+Opposite+Saudi+Embassy&t=&z=15&ie=UTF8&iwloc=&output=embed"
-                            width="100%"
-                            height="450"
-                            style={{ border: 0, borderRadius: 'var(--radius-lg)' }}
-                            allowFullScreen=""
-                            loading="lazy"
-                            referrerPolicy="no-referrer-when-downgrade"
-                            title="موقعنا في شارع القدس، صنعاء، مقابل السفارة السعودية"
+                                width="100%"
+                                height="450"
+                                frameBorder="0"
+                                scrolling="no"
+                                marginHeight="0"
+                                marginWidth="0"
+                                style={{ borderRadius: 'var(--radius-lg)' }}
+                                src="https://maps.google.com/maps?q=15.336174,44.204229+(النجم%20الازرق%20للسياحة%20والسفر)&t=&z=17&ie=UTF8&iwloc=B&output=embed"
+                                title="النجم الازرق للسياحة والسفر"
+                                aria-label="النجم الازرق للسياحة والسفر location map"
                             ></iframe>
                         </div>
                         <div className="map-info">

@@ -9,7 +9,6 @@ const Footer = () => {
         { icon: <SiX />, href: SOCIAL_LINKS.twitter, label: 'X', color: '#000000', className: 'x' },
         { icon: <FiInstagram />, href: SOCIAL_LINKS.instagram, label: 'إنستغرام', color: '#E4405F' },
         { icon: <FiFacebook />, href: SOCIAL_LINKS.facebook, label: 'فيسبوك', color: '#1877F2' },
-        { icon: <FiLinkedin />, href: SOCIAL_LINKS.linkedin, label: 'لينكد إن', color: '#0077B5' }
     ];
 
     return (    
@@ -94,7 +93,7 @@ const Footer = () => {
                 </div>
 
                 <div className="footer-bottom">
-                    <p>&copy; {new Date().getFullYear()} النجم الأزرق للسفريات والسياحة. جميع الحقوق محفوظة.</p>
+                    <p>  النجم الأزرق للسفريات والسياحة. جميع الحقوق محفوظة لعام ٢٠٢٦ لدى مندوب التعميدات الخاص بالمكتب.</p>
                 </div>
             </div>
         </footer>

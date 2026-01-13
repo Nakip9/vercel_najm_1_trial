@@ -10,12 +10,12 @@ import mountainBg from '/hero_mountain_background_1764893090134.jpg';
 import beachBg from '/beach.jpg';
 import dubaiBg from '/dubai.jpg';
 const heroSlides = [
-    {
+{
         id: 1,
         theme: 'makkah',
         background: makkahBg,
         tag: 'رحلة روحانية',
-        headline: 'اكتشف مكة المكرمة',
+        headline: 'زيارة بيت الله الحرام',
         subtitle: 'رحلة الحج والعمرة بأفضل الخدمات والأسعار المميزة',
         cta: 'احجز رحلتك الآن',
         gradient: 'linear-gradient(180deg, rgba(8,145,178,0.2) 0%, rgba(8,145,178,0.75) 100%)'

@@ -306,7 +306,7 @@
 .bento-grid-modern {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(2, minmax(260px, auto));
+    grid-template-rows: repeat(3, minmax(260px, auto));
     gap: 1.5rem;
     max-width: 1100px;
     margin: 0 auto;
@@ -341,11 +341,20 @@
 
 .bento-item p {
     font-size: 1rem;
-    line-height: 1.6;
+    line-height: 1.7;
     color: var(--text-secondary);
     margin: 0;
     position: relative;
     z-index: 2;
+}
+
+.hajj-umrah-card p {
+    line-height: 1.8;
+    max-width: 90%;
+}
+
+.visa-sales-card p {
+    line-height: 1.75;
 }
 
 .icon-wrapper {
@@ -465,6 +474,112 @@
     grid-column: span 1;
 }
 
+/* 6. Hajj & Umrah Card (Featured with gradient) */
+.hajj-umrah-card {
+    grid-column: span 2;
+    background: linear-gradient(135deg, #065f46 0%, #047857 100%);
+    color: white;
+    overflow: hidden;
+}
+
+.hajj-umrah-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+    transition: transform 0.5s ease;
+}
+
+.hajj-umrah-card:hover::before {
+    transform: scale(1.5);
+}
+
+.hajj-umrah-card h3, .hajj-umrah-card p {
+    color: white;
+}
+
+.hajj-umrah-card p {
+    opacity: 0.9;
+}
+
+.hajj-umrah-card .icon-wrapper {
+    background: rgba(255, 255, 255, 0.15) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+}
+
+.hajj-pattern {
+    position: absolute;
+    left: -30px;
+    top: -30px;
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+}
+
+/* 7. Visa Sales Card */
+.visa-sales-card {
+    grid-column: span 1;
+    background: linear-gradient(to bottom, #f8fafc 0%, #f1f5f9 100%);
+    border: 1px solid rgba(99, 102, 241, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.visa-sales-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #6366f1, #8b5cf6);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.visa-sales-card:hover::after {
+    transform: scaleX(1);
+}
+
+.visa-sales-card .icon-wrapper {
+    background: rgba(99, 102, 241, 0.1);
+    transition: all 0.3s ease;
+}
+
+.visa-sales-card:hover .icon-wrapper {
+    background: rgba(99, 102, 241, 0.2);
+    transform: scale(1.1);
+}
+
+.visa-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(99, 102, 241, 0.1);
+    color: #6366f1;
+    padding: 6px 12px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    align-self: flex-start;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    transition: all 0.3s ease;
+}
+
+.visa-sales-card:hover .visa-badge {
+    background: rgba(99, 102, 241, 0.15);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+}
+
 /* Tailwind Utilities (if not using Tailwind directly) */
 .relative { position: relative; }
 .z-10 { z-index: 10; }
@@ -535,18 +650,34 @@
 .border-white { border-color: rgba(255,255,255,0.3) !important; }
 .hover-white:hover { background: white !important; color: var(--primary-blue) !important; }
 
+/* Subtle glow animation for featured cards */
+@keyframes subtlePulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(6, 95, 70, 0);
+    }
+    50% {
+        box-shadow: 0 0 20px 5px rgba(6, 95, 70, 0.1);
+    }
+}
+
+.hajj-umrah-card {
+    animation: subtlePulse 4s ease-in-out infinite;
+}
+
 /* --- Responsive Adjustments --- */
 @media (max-width: 992px) {
     .bento-grid-modern {
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: auto;
     }
-    
+
     .vision-card { grid-column: span 2; }
     .trust-card { grid-column: span 1; grid-row: span 1; min-height: 280px; }
     .team-card { grid-column: span 1; }
     .map-card { grid-column: span 1; }
-    .service-card { grid-column: span 2; } /* Stretch service on tablet */
+    .service-card { grid-column: span 1; }
+    .hajj-umrah-card { grid-column: span 2; }
+    .visa-sales-card { grid-column: span 1; }
 }
 
 @media (max-width: 768px) {
@@ -558,17 +689,22 @@
         max-width: 500px;
         margin: 0 auto;
     }
-    
+
     .bento-grid-modern {
         grid-template-columns: 1fr;
+        gap: 1.25rem;
     }
-    
-    .vision-card, .trust-card, .team-card, .map-card, .service-card {
+
+    .vision-card, .trust-card, .team-card, .map-card, .service-card, .hajj-umrah-card, .visa-sales-card {
         grid-column: span 1;
         grid-row: auto;
     }
 
     .hero-title-modern {
         font-size: 2.5rem;
+    }
+
+    .hajj-umrah-card, .visa-sales-card {
+        animation: none;
     }
 }

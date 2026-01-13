@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { 
+import {
     FiArrowLeft,
     FiTarget,
     FiAward,
@@ -9,7 +9,9 @@ import {
     FiTrendingUp,
     FiMapPin,
     FiSmile,
-    FiCheckCircle
+    FiCheckCircle,
+    FiClock,
+    FiBriefcase
 } from 'react-icons/fi';
 import LazyImage from '../components/common/LazyImage';
 import './About.css';
@@ -64,22 +66,22 @@ const About = () => {
                 </motion.div>
 
                 <div className="container hero-content-modern">
-                    <motion.div 
+                    <motion.div
                         initial="hidden"
                         animate="visible"
                         variants={containerVariants}
                         className="hero-text-wrapper"
                     >
                         <motion.span variants={itemVariants} className="hero-badge-glass">
-                            منذ 2008
+                            خبرة منذ 2008
                         </motion.span>
                         <motion.h1 variants={itemVariants} className="hero-title-modern">
-                            لسنا مجرد وكالة سفر، <br />
-                            <span className="text-gradient">نحن رفقاء رحلتك.</span>
+                            أكثر من وكالة سفر، <br />
+                            <span className="text-gradient">شريكك في كل مغامرة.</span>
                         </motion.h1>
                         <motion.p variants={itemVariants} className="hero-desc-modern">
-                            في "النجم الأزرق"، نؤمن أن السفر ليس مجرد انتقال من مكان لآخر، بل هو فن صناعة الذكريات. 
-                            نجمع بين الخبرة العريقة والرؤية العصرية لنقدم لك تجربة لا تُنسى.
+                            في "النجم الأزرق"، نرى السفر كرحلة اكتشاف وليس مجرد تنقل من مكان إلى آخر.
+                            ندمج بين الإرث الراسخ والتفكير الحديث لنصنع لك لحظات لا تُمحى من الذاكرة.
                         </motion.p>
                     </motion.div>
                 </div>
@@ -108,28 +110,28 @@ const About = () => {
                             viewport={{ once: true, margin: "-100px" }}
                             transition={{ duration: 0.8 }}
                         >
-                            <span className="section-label">قصتنا</span>
+                            <span className="section-label">مسيرتنا</span>
                             <h2 className="section-heading">
-                                من مكتب صغير إلى <br/>
-                                <span className="highlight-underline">نافذة على العالم</span>
+                                من بدايات متواضعة إلى <br/>
+                                <span className="highlight-underline">بوابة شاملة نحو العالم</span>
                             </h2>
                             <p className="story-text">
-                                بدأت حكايتنا بشغف بسيط: كيف يمكننا جعل السفر أسهل وأكثر متعة؟ 
-                                انطلقنا من صنعاء برؤية واضحة، ورغم التحديات، استطعنا أن نبني جسراً من الثقة مع عملائنا.
+                                انطلقت رحلتنا من إيمان عميق: كيف نُسهّل السفر ونُحوله إلى تجربة ممتعة؟
+                                بدأنا من صنعاء بقصد واضح، وعلى الرغم من العقبات، نجحنا في بناء رابطة وثيقة من الولاء مع زبائننا.
                             </p>
                             <p className="story-text">
-                                اليوم، وبعد مرور أكثر من 15 عاماً، نفخر بأننا لسنا مجرد مقدمي خدمة، بل مستشارين مؤتمنين 
-                                لأحلام آلاف المسافرين، نفتح لهم أبواب العالم بمصداقية واحترافية.
+                                الآن، وبعد أكثر من خمسة عشر عاماً، نعتز بأننا لا نقدّم خدمة فحسب، بل نكون مستشارين موثوقين
+                                لطموحات آلاف المسافرين، نشرع أمامهم الأبواب العالمية بصدق وكفاءة.
                             </p>
-                            
+
                             <div className="story-stats">
                                 <div className="story-stat-item">
                                     <span className="stat-num">15+</span>
-                                    <span className="stat-label">سنة خبرة</span>
+                                    <span className="stat-label">عاماً من الإتقان</span>
                                 </div>
                                 <div className="story-stat-item">
                                     <span className="stat-num">50k+</span>
-                                    <span className="stat-label">عميل سعيد</span>
+                                    <span className="stat-label">عميل راضٍ</span>
                                 </div>
                             </div>
                         </motion.div>
@@ -149,7 +151,7 @@ const About = () => {
                                     <LazyImage src="/london.jpeg" alt="وجهات عالمية" />
                                     <div className="collage-badge">
                                         <FiTrendingUp />
-                                        <span>نمو مستمر</span>
+                                        <span>تطور دائم</span>
                                     </div>
                                 </div>
                                 {/* Decorative elements */}
@@ -165,26 +167,26 @@ const About = () => {
             <section className="section values-section-modern">
                 <div className="container">
                     <div className="section-header-center mb-5">
-                        <motion.span 
+                        <motion.span
                             initial={{ opacity: 0, y: 10 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             className="section-tag"
                         >
-                            لماذا تختارنا؟
+                            ما نقدمه لك
                         </motion.span>
-                        <motion.h2 
+                        <motion.h2
                             initial={{ opacity: 0, y: 10 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ delay: 0.1 }}
                             className="section-heading"
                         >
-                            قيمٌ نلتزم بها في كل رحلة
+                            قيمٌ نعتز بها وخدماتٌ نتميز بها
                         </motion.h2>
                     </div>
 
                     <div className="bento-grid-modern">
                         {/* 1. Vision Card (Featured) */}
-                        <motion.div 
+                        <motion.div
                             className="bento-item vision-card"
                             whileHover={{ y: -5 }}
                             initial={{ opacity: 0, scale: 0.95 }}
@@ -196,14 +198,14 @@ const About = () => {
                                 <div className="icon-wrapper glass-icon mb-4">
                                     <FiTarget />
                                 </div>
-                                <h3>رؤيتنا للمستقبل</h3>
-                                <p>أن نكون الخيار الأول للمسافر العربي، عبر تقديم حلول سفر مبتكرة تجمع بين الفخامة، السهولة، والسعر المناسب.</p>
+                                <h3>طموحنا يحدده التميز</h3>
+                                <p>نسعى لأن نكون الوجهة المفضلة لكل مسافر عربي، من خلال ابتكار حلول سفر تدمج الرقي، اليسر، والقيمة التنافسية.</p>
                             </div>
                             <div className="bg-pattern"></div>
                         </motion.div>
 
                         {/* 2. Trust Card (Vertical) */}
-                        <motion.div 
+                        <motion.div
                             className="bento-item trust-card"
                             whileHover={{ y: -5 }}
                             initial={{ opacity: 0, scale: 0.95 }}
@@ -212,19 +214,19 @@ const About = () => {
                             transition={{ delay: 0.1 }}
                         >
                             <div className="trust-badge">
-                                <FiCheckCircle /> 100% شفافية
+                                <FiCheckCircle /> 100% وضوح
                             </div>
                             <div className="bento-content mt-auto">
                                 <div className="icon-wrapper mb-3 text-amber-500">
                                     <FiAward size={32} />
                                 </div>
-                                <h3>المصداقية أولاً</h3>
-                                <p>لا رسوم خفية، ولا وعود زائفة. الشفافية هي عملتنا، وما نتفق عليه هو ما تحصل عليه بالضبط.</p>
+                                <h3>الثقة أساس عملنا</h3>
+                                <p>بدون تكاليف مخفية أو وعود مبالغ فيها. الصرامة في الأداء هي ميزتنا، وما نلتزم به هو ما تحصل عليه حرفياً.</p>
                             </div>
                         </motion.div>
 
                         {/* 3. Team Card */}
-                        <motion.div 
+                        <motion.div
                             className="bento-item team-card"
                             whileHover={{ scale: 1.02 }}
                             initial={{ opacity: 0, y: 20 }}
@@ -236,14 +238,14 @@ const About = () => {
                                 <div className="icon-wrapper text-blue-600">
                                     <FiUsers />
                                 </div>
-                                <span className="tiny-tag">دعم 24/7</span>
+                                <span className="tiny-tag">دعم على مدار الساعة</span>
                             </div>
-                            <h3>فريق محترف</h3>
-                            <p>مستشارون ذوو خبرة عالية جاهزون لخدمتك في أي وقت.</p>
+                            <h3>كفاءة وخبرة</h3>
+                            <p>خبراء متخصصون على أتم الاستعداد لمساعدتك في أي لحظة.</p>
                         </motion.div>
 
                         {/* 4. Global Coverage */}
-                        <motion.div 
+                        <motion.div
                             className="bento-item map-card"
                             whileHover={{ scale: 1.02 }}
                             initial={{ opacity: 0, y: 20 }}
@@ -255,14 +257,14 @@ const About = () => {
                                 <div className="icon-wrapper text-teal-600 mb-3">
                                     <FiMapPin />
                                 </div>
-                                <h3>تغطية عالمية</h3>
-                                <p>شبكة واسعة من الشركاء في أكثر من 50 دولة.</p>
+                                <h3>شبكة عالمية واسعة</h3>
+                                <p>تحالفات قوية مع شركاء في خمسين دولة وأكثر.</p>
                             </div>
                             <div className="map-dots-decoration"></div>
                         </motion.div>
 
                         {/* 5. Comfort/Service */}
-                        <motion.div 
+                        <motion.div
                             className="bento-item service-card"
                             whileHover={{ scale: 1.02 }}
                             initial={{ opacity: 0, y: 20 }}
@@ -274,8 +276,56 @@ const About = () => {
                                 <div className="icon-wrapper text-rose-500 mb-3">
                                     <FiSmile />
                                 </div>
-                                <h3>راحة بالك</h3>
-                                <p>نهتم بأدق التفاصيل الصغيرة لتستمتع برحلتك دون قلق.</p>
+                                <h3>تجربة سلسة ومريحة</h3>
+                                <p>نراعي أصغر التفاصيل كي تستمتع برحلتك خالياً من أي هموم.</p>
+                            </div>
+                        </motion.div>
+
+                        {/* 6. Hajj & Umrah Service (Featured) */}
+                        <motion.div
+                            className="bento-item hajj-umrah-card"
+                            whileHover={{ y: -5 }}
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.5 }}
+                        >
+                            <div className="bento-content relative z-10">
+                                <div className="icon-wrapper mb-4">
+                                    <FiClock size={32} />
+                                </div>
+                                <h3>استخراج تأشيرات الحج والعمرة</h3>
+                                <p>
+                                    نسهل عليك رحلتك الروحانية بتقديم دعم شامل للحصول على تصريحات الحج والعمرة.
+                                    نضمن لك تجربة سلسة وفعّالة تُزيل عنك عناء الإجراءات الإدارية، فنقدم لك
+                                    أسرع وسيلة موثوقة للوصول إلى أقدس البقاع في المملكة العربية السعودية.
+                                </p>
+                            </div>
+                            <div className="hajj-pattern"></div>
+                        </motion.div>
+
+                        {/* 7. Visa Sales Service */}
+                        <motion.div
+                            className="bento-item visa-sales-card"
+                            whileHover={{ scale: 1.02 }}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.6 }}
+                        >
+                            <div className="visa-badge">
+                                <span>تراخيص رسمية</span>
+                            </div>
+                            <div className="bento-content">
+                                <div className="icon-wrapper mb-3">
+                                    <FiBriefcase />
+                                </div>
+                                <h3>تأشيرات العمل والإقامة</h3>
+                                <p>
+                                    نتميز في تقديم حلول دخول قانونية للمملكة العربية السعودية، سواء لغرض العمل
+                                    أو الإقامة. تتوفر لدينا خيارات متنوعة تشمل الإقامات المهنية قصيرة وطويلة الأمد،
+                                    بالإضافة إلى تأشيرات العمالة المنزلية وغيرها من الفئات المهنية بجميع التخصصات المطلوبة.
+                                </p>
                             </div>
                         </motion.div>
                     </div>
@@ -287,14 +337,14 @@ const About = () => {
                 <div className="container">
                     <div className="cta-modern-card">
                         <div className="cta-modern-content">
-                            <h2>هل أنت مستعد لمغامرتك القادمة؟</h2>
-                            <p>دعنا نخطط لرحلتك بينما تتفرغ أنت لتجهيز حقائبك.</p>
+                            <h2>متشوق لبدء مغامرتك التالية؟</h2>
+                            <p>تولّى نحن التخطيط، بينما تستعد أنت للانطلاق.</p>
                             <div className="cta-buttons">
                                 <Link to="/contact" className="btn btn-primary btn-lg border-white">
-                                    ابدأ التخطيط الآن <FiArrowLeft />
+                                    ابداً الآن <FiArrowLeft />
                                 </Link>
                                 <Link to="/services" className="btn btn-outline btn-lg text-white border-white hover-white">
-                                    استكشف خدماتنا
+                                    اطلع على خدماتنا
                                 </Link>
                             </div>
                         </div>
